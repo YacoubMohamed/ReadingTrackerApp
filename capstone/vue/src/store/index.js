@@ -37,6 +37,9 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    ADD_BOOK(state, book){
+      state.book = book;
     }
   }
 })

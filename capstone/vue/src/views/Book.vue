@@ -1,6 +1,6 @@
 <template>
   <div class="main mx-auto">
-      <h1> Welcome {{$store.state.user.username}}</h1>
+      <h1> Manage {{$store.state.user.username}}'s Books!</h1>
     <add-book/>
   </div>
 </template>
@@ -12,6 +12,6 @@ components: {AddBook},
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

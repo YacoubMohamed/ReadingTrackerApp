@@ -49,7 +49,7 @@
 }
 
 html {
-  font-family: "Indie Flower", "Comic Sans", sans-serif;
+  font-family: 'Playfair Display', serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -57,7 +57,7 @@ html {
 }
 
 body {
-  font-family: "Indie Flower", "Comic Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   /* font-family: apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol"; */
@@ -73,15 +73,22 @@ body {
   box-sizing: border-box;
 }
 
-.main {
+/* .main {
   margin: 1rem 0;
   width: 800px;
-}
+} */
 
 #nav a {
   font-size: 18px;
-  color: blue;
+  color: rgb(59, 141, 141);
   font-weight: bold;
+}
+
+h1{
+  font-family: 'Quattrocento', sans-serif;
+  text-transform: capitalize;
+  padding-bottom: .5em;
+  padding-top: .5em;
 }
 
 .btn:not(:disabled):not(.disabled) {
@@ -121,10 +128,10 @@ label {
 
 .form-control {
   display: block;
-  width: 100%;
+  width: 20em;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1;
   color: #495057;
   background-color: #fff;
   background-clip: padding-box;
