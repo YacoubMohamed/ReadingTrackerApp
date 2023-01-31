@@ -7,5 +7,5 @@ public interface BookDao {
     Book getTile (String title);
     Book getAuthor (String author);
     Book getIsbn (String isbn);
-    Book getBookId (int bookId);
+    Book getBookById (int bookId);
 }

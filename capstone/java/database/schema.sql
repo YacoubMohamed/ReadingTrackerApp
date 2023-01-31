@@ -15,7 +15,7 @@ CREATE TABLE users (
     author varchar (100),
     title varchar (100),
     isbn varchar (100),
-    book_id INTEGER NOT NULL ,
+    book_id SERIAL,
 	CONSTRAINT PK_book_id PRIMARY KEY (book_id)
 );
 

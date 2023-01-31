@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Book;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,7 +16,12 @@ public class JdbcBookDao implements BookDao {
 
     @Override
     public Book addBook(Book newBook) {
-        String sql = "INSERT INTO book (author, title, isbn) VALUES (?,?,?)";
+//        Book createdBook = new Book ();
+        String sql = "INSERT INTO book (author, title, isbn) VALUES (?,?,?) RETURNING book_id";
+        Integer newBookId;
+        newBookId = jdbcTemplate.queryForObject(sql,Integer.class, newBook.getAuthor(), newBook.getTitle(), newBook.getIsbn());
+//        getBookId(newBookId);
+        return getBookById(newBookId);
 
         // this sql statements needs a RETURNING
         // the return gives you back the new book_id that got created
@@ -25,12 +31,6 @@ public class JdbcBookDao implements BookDao {
         // we're going to take that book_id and pass it to the getBookId()
         // method which gives you a back a Book object.
 
-
-
-
-
-
-        return ;
     }
 
     @Override
@@ -49,9 +49,16 @@ public class JdbcBookDao implements BookDao {
     }
 
     @Override
-    public Book getBookId(int bookId) {
+    public Book getBookById(int bookId) {
+        Book book;
 
         // make a sql that returns a row where bookid =
+        String sql = "SELECT * FROM book WHERE book_id = ?; ";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql,bookId);
+        if (rowSet.next()) {
+            book = mapRowToBook (rowSet);
+            return book;
+        }  else return null;
 
         // save the result of the query into a rowset.
 
@@ -59,8 +66,16 @@ public class JdbcBookDao implements BookDao {
         // and make a Book object
 
         // return the book object
-        return null;
+
     }
 
+    private Book mapRowToBook (SqlRowSet rs) {
+        Book book = new Book();
+        book.setBookId(rs.getInt("book_Id"));
+        book.setAuthor(rs.getString("author"));
+        book.setTitle(rs.getString("title"));
+        book.setIsbn(rs.getString("isbn"));
+        return book;
+    }
 
 }
