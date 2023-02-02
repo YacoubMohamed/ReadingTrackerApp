@@ -1,17 +1,30 @@
 <template>
   <div class="home">
+    <div class="main">
+      <h2>Grace is happy</h2>
+    </div>
+    <div class="welcome">
     <h1>Welcome, {{ $store.state.user.username }}!</h1>
+    </div>
   <div class="prompt">What would you like to do?</div>
 
-  <ul>
+  <ul class="menu-nav">
+    
+    <div id = "booklist">
+      <li class="choice">
+      <router-link v-bind:to="{ name: 'manageBooks' }">
+          Your Books
+        </router-link>
+        </li>
+    </div>
     <li class="choice">
 <router-link v-bind:to="{name: 'addBook'}">
   Manage Books 
 </router-link>
     </li>
     <li class="choice">
-<router-link v-bind:to="{name: 'setGoals'}">
-  Manage Goals 
+<router-link v-bind:to="{name: 'manageFamily'}">
+  Manage Family
 </router-link>
     </li>
   </ul>
@@ -32,14 +45,25 @@ export default {
 .home {
   display: grid;
   grid-template-areas: 
-    "welcome welcome welcome"
-    "prompt prompt prompt"
-    "choice choice choice"
+    "welcome main main"
+    "prompt main main"
+    "menu-nav main main"
   ;
 }
+/* #booklist {
+  grid-area: booklist;
+} */
 
-h1{
-    grid-area: welcome;
+
+.menu-nav {
+  grid-area: menu-nav;
+}
+.main {
+  grid-area: main;
+}
+.welcome {
+  padding-left: 2em;
+  grid-area: welcome;
 }
 
 .prompt {
