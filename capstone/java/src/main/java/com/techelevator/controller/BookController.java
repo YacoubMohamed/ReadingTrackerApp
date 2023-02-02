@@ -17,7 +17,7 @@ public class BookController {
 // add principal
 
     @RequestMapping (path = "/book", method = RequestMethod.POST)
-    public Book getBookById (@RequestBody  Book book, String username) {
+    public Book createBook (@RequestBody  Book book, String username) {
         return bookDao.addBook(book, username);
     }
 

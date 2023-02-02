@@ -6,12 +6,12 @@ import java.util.List;
 
 public class Family {
     private String familyName;
-    private List<Members> familyMembers = new ArrayList<>();
+    private List<User> familyUsers = new ArrayList<>();
     private int familyId;
 
-    public Family(String familyName, List<Members> familyMembers, int familyId) {
+    public Family(String familyName, List<User> familyUsers, int familyId) {
         this.familyName = familyName;
-        this.familyMembers = familyMembers;
+        this.familyUsers = familyUsers;
         this.familyId = familyId;
     }
 
@@ -26,12 +26,12 @@ public class Family {
         this.familyName = familyName;
     }
 
-    public List<Members> getFamilyMembers() {
-        return familyMembers;
+    public List<User> getFamilyMembers() {
+        return familyUsers;
     }
 
-    public void setFamilyMembers(List<Members> familyMembers) {
-        this.familyMembers = familyMembers;
+    public void setFamilyMembers(List<User> familyUsers) {
+        this.familyUsers = familyUsers;
     }
 
     public int getFamilyId() {
