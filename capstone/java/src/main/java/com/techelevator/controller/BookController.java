@@ -14,15 +14,11 @@ import java.security.Principal;
 public class BookController {
     @Autowired
     private BookDao bookDao;
-
+// add principal
 
     @RequestMapping (path = "/book", method = RequestMethod.POST)
-    public Book getBookById (@RequestBody  Book book) {
-
-
-        return bookDao.addBook(book);
-
-
+    public Book getBookById (@RequestBody  Book book, String username) {
+        return bookDao.addBook(book, username);
     }
 
 }

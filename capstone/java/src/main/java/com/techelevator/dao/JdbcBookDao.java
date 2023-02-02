@@ -15,12 +15,14 @@ public class JdbcBookDao implements BookDao {
     }
 
     @Override
-    public Book addBook(Book newBook) {
-//        Book createdBook = new Book ();
-        String sql = "INSERT INTO book (author, title, isbn) VALUES (?,?,?) RETURNING book_id";
+    public Book addBook(Book newBook, String username) {
+        String memberIdSql = "SELECT members.member_id FROM members JOIN users ON members.user_id WHERE username = ?;";
+        int memberId = jdbcTemplate.queryForObject(memberIdSql, Integer.class, username);
+
+
+        String sql = "INSERT INTO book (author, title, isbn, member_id) VALUES (?,?,?,?) RETURNING book_id";
         Integer newBookId;
-        newBookId = jdbcTemplate.queryForObject(sql,Integer.class, newBook.getAuthor(), newBook.getTitle(), newBook.getIsbn());
-//        getBookId(newBookId);
+        newBookId = jdbcTemplate.queryForObject(sql, Integer.class, newBook.getAuthor(), newBook.getTitle(), newBook.getIsbn(), memberId);
         return getBookById(newBookId);
 
         // this sql statements needs a RETURNING
