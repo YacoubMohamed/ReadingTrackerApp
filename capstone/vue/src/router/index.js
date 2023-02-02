@@ -6,6 +6,8 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import Book from '../views/Book.vue'
+import Books from '../views/Books.vue'
+import Family from '../views/Family.vue'
 
 Vue.use(Router)
 
@@ -27,7 +29,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -59,9 +61,25 @@ const router = new Router({
       name: "addBook",
       component: Book,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
-    }
+    },
+    {
+      path: "/manageBooks",
+      name: "manageBooks",
+      component: Books,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/manageFamily",
+      name: "manageFamily",
+      component: Family,
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 })
 
