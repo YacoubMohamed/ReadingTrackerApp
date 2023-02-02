@@ -5,6 +5,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class JdbcBookDao implements BookDao {
     JdbcTemplate jdbcTemplate;
@@ -15,12 +18,14 @@ public class JdbcBookDao implements BookDao {
     }
 
     @Override
-    public Book addBook(Book newBook) {
-//        Book createdBook = new Book ();
-        String sql = "INSERT INTO book (author, title, isbn) VALUES (?,?,?) RETURNING book_id";
+    public Book addBook(Book newBook, String username) {
+        String userIdSql = "SELECT username FROM users WHERE username = ?;";
+        int userId = jdbcTemplate.queryForObject(userIdSql, Integer.class, username);
+
+
+        String sql = "INSERT INTO book (author, title, isbn, user_id) VALUES (?,?,?,?) RETURNING book_id";
         Integer newBookId;
-        newBookId = jdbcTemplate.queryForObject(sql,Integer.class, newBook.getAuthor(), newBook.getTitle(), newBook.getIsbn());
-//        getBookId(newBookId);
+        newBookId = jdbcTemplate.queryForObject(sql, Integer.class, newBook.getAuthor(), newBook.getTitle(), newBook.getIsbn(), userId);
         return getBookById(newBookId);
 
         // this sql statements needs a RETURNING
@@ -67,6 +72,17 @@ public class JdbcBookDao implements BookDao {
 
         // return the book object
 
+    }
+
+    @Override
+    public List<Book> getBookByUserName(String username) {
+        List <Book> books = new ArrayList<>();
+        String sql = "SELECT * FROM book JOIN users ON book.user_id = user.user_id WHERE user_name = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);
+        while (rowSet.next()) {
+            Book book2 = mapRowToBook(rowSet);
+            books.add(book2);
+        } return books;
     }
 
     private Book mapRowToBook (SqlRowSet rs) {
