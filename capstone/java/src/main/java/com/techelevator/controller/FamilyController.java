@@ -24,7 +24,12 @@ public class FamilyController {
         return familyDao.getListOfFamilyMembers(familyId);
     }
     @RequestMapping(path = "/family/{familyId}/{userId}", method = RequestMethod.PUT)
-    public void addFamilyMember(int userId, int familyId) {
+    public void addFamilyMember(@PathVariable int userId,@PathVariable int familyId) {
         familyDao.addFamilyMember(userId,familyId);
     }
+    @RequestMapping(path = "/family")
+    public List<Family> getListOfFamilies() {
+        return familyDao.getListOfFamilies();
+    }
+
     }

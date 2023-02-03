@@ -34,7 +34,7 @@ public class JdbcFamilyDao extends User implements FamilyDao {
     @Override
     public List<FamilyUsers> getListOfFamilyMembers(int familyId) {
         List<FamilyUsers> familyMembers = new ArrayList<>();
-        String sql = "SELECT users.username, users.user_id, family.family_id, family_name FROM users JOIN family ON family.user_id = user.user_id WHERE family.family_id = ?";
+        String sql = "SELECT users.username, users.user_id, family.family_id JOIN family ON users.family_id = family.family_id WHERE users.family_id = ?";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, familyId);
         while (rowSet.next()) {
             familyMembers.add(mapRowToFamilyUsers(rowSet));
@@ -54,10 +54,13 @@ public class JdbcFamilyDao extends User implements FamilyDao {
 
     @Override
     public void addFamily(Family newFamily) {
-        String sql = "INSERT INTO family (family_name, user_id) VALUES (?, ?);";
+        String sql = "INSERT INTO family (family_name) VALUES (?);";
+        jdbcTemplate.update(sql, newFamily.getFamilyName());
+//        String sql = "INSERT INTO family (family_name, user_id) VALUES (?, ?);";
+//        jdbcTemplate.update(sql, newFamily.getFamilyName(), newFamily.getUserId());
         // try {
 
-        jdbcTemplate.update(sql, newFamily.getFamilyName(), newFamily.getUserId());
+
         //  } catch (DataAccessException e) {
         //   return false;
         //  }
@@ -81,7 +84,7 @@ public class JdbcFamilyDao extends User implements FamilyDao {
     public void addFamilyMember(int userId, int familyId) {
         String sql = "UPDATE users SET family_id = ? WHERE user_id = ?";
        // try {
-           jdbcTemplate.update(sql, userId, familyId);
+        jdbcTemplate.update(sql, familyId, userId);
        // } catch (DataAccessException e) {
          //   return false;
         //}

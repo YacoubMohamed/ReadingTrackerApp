@@ -11,7 +11,7 @@ public interface FamilyDao {
     List<Family> getListOfFamilies();
     Family getFamilyById(int familyId);
     int findByUsername(String username);
-    void addFamily (Family newFamily );
+    void addFamily (Family newFamily);
     void deleteFamily (int familyId);
     void updateFamily ();
     void addFamilyMember (int userId, int familyId);

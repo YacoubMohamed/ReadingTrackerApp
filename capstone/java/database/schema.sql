@@ -1,17 +1,24 @@
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS users, book, book_users, family, prizes, prizes_users, reading_activity;
-
-
+CREATE TABLE family (
+   family_id SERIAL,
+--   user_id INTEGER,
+   family_name varchar (100),
+   CONSTRAINT PK_family_id PRIMARY KEY (family_id)
+--   CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
+);
 CREATE TABLE users (
    user_id SERIAL,
    username varchar(50) NOT NULL UNIQUE,
    password_hash varchar(200) NOT NULL,
    role varchar(50) NOT NULL,
+   family_id INTEGER,
    status BOOLEAN,
-   CONSTRAINT PK_user_id PRIMARY KEY (user_id)
-);
+   CONSTRAINT PK_user_id PRIMARY KEY (user_id),
+   CONSTRAINT FK_family_id FOREIGN KEY (family_id) REFERENCES family (family_id)
 
+);
  CREATE TABLE book (
    book_id SERIAL,
    author varchar (100),
@@ -28,13 +35,10 @@ CREATE TABLE book_users (
    CONSTRAINT PK_book_users_id PRIMARY KEY (book_id)
 );
 
-CREATE TABLE family (
-   family_id SERIAL,
-   user_id INTEGER,
-   family_name varchar (100),
-   CONSTRAINT PK_family_id PRIMARY KEY (family_id),
-   CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
-);
+
+
+
+
 
 CREATE TABLE prizes (
    prize_id SERIAL,
@@ -75,6 +79,5 @@ CREATE TABLE reading_activity (
     CONSTRAINT FK_family_id FOREIGN KEY (family_id) REFERENCES family (family_id)
 );
 
-INSERT INTO family (family_name) VALUES = ('Smith')
 
 COMMIT TRANSACTION;
