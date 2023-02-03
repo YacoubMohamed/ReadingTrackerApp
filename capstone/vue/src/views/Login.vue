@@ -94,5 +94,9 @@ h1 {
 #bottom-buttons {
   padding-top: 1em;
 }
+.text-center {
+  background-color: rgb(245, 247, 177);
+   height: 100vh;
+}
 
 </style>

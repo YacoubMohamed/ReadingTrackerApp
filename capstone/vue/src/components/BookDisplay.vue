@@ -16,14 +16,15 @@ props: ["book"],
 </script>
 
 <style>
-.main {
-    display: flex;
-}
+
 .books {
+  background-color: rgb(233, 220, 220);
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   border: 1px black solid;
   border-radius: 6px;
-  padding: 1rem;
-  margin: 10px;
+  padding: .001rem;
+  margin: 1rem;
 }
 </style>
