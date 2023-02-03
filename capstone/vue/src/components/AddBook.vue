@@ -20,7 +20,7 @@
           </div>
           <div class="form-element">
               <label for="isbn">ISBN: </label>
-              <input id="ISBN" type="text" v-model="newBook.ISBN" />
+              <input id="ISBN" type="text" v-model="newBook.isbn" />
           </div>
           <div id="button-row">
             <input id="buttons" type="submit" value="Save" />
@@ -43,7 +43,7 @@ export default {
             newBook : {
                 title: "",
                 author: "",
-                ISBN: ""
+                isbn: ""
             },
         }
     },
@@ -56,7 +56,7 @@ export default {
       this.newBook = {
                 title: "",
                 author: "",
-                ISBN: ""
+                isbn: ""
             }
         },
         addNewBook() {

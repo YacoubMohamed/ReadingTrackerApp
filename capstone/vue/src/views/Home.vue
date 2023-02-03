@@ -38,11 +38,11 @@
     </div>
     <div class="div-two">
       <div class="number-of-books">
-        <p>1000 PAGES</p>
+        <p class="infographic">1000 PAGES</p>
       </div>
 
       <div class="graphics">
-        <p>HERE IS THE GRAPH</p>
+        <p class="infographic">HERE IS THE GRAPH</p>
       </div>
 
     </div>
@@ -89,6 +89,12 @@ export default {
 .div-two {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+}
+.infographic {
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 5em;
 }
 .div-three {
   display: flex;

@@ -6,7 +6,7 @@ export default {
     return axios.post('/book', book)
   },
   getBooks() {
-    return axios.get('/books')
+    return axios.get('/book/list')
   },
   displayFamily() {
     return axios.get('/family')

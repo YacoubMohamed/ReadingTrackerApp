@@ -55,12 +55,17 @@ public class JdbcBookDao implements BookDao {
     @Override
     public List<Book> getBookByUserName(String username) {
         List <Book> books = new ArrayList<>();
-        String sql = "SELECT title FROM book JOIN book_users ON book_users.book_id = book.book_id JOIN users ON book_users.user_id = users.user_id WHERE username = ?;";
+        String sql = "SELECT * FROM book JOIN book_users ON book_users.book_id = book.book_id JOIN users ON book_users.user_id = users.user_id WHERE username = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);
-        while (rowSet.next()) {
-            Book book2 = mapRowToBook(rowSet);
+
+        // delete the next two lines and rename rowSet2 back to rowSet once you have a book_users table with information in it
+        String sql2 = "SELECT * FROM book";
+        SqlRowSet rowSet2 = jdbcTemplate.queryForRowSet(sql2);
+        while (rowSet2.next()) {
+            Book book2 = mapRowToBook(rowSet2);
             books.add(book2);
-        } return books;
+        }
+        return books;
     }
     @Override
     public List<Book> getAllBooks() {
@@ -75,10 +80,20 @@ public class JdbcBookDao implements BookDao {
 
     private Book mapRowToBook (SqlRowSet rs) {
         Book book = new Book();
-        book.setBookId(rs.getInt("book_Id"));
-        book.setAuthor(rs.getString("author"));
-        book.setTitle(rs.getString("title"));
-        book.setIsbn(rs.getString("isbn"));
+        if(rs.getInt("book_Id")>0){
+            book.setBookId(rs.getInt("book_Id"));
+        }
+        if(rs.getString("author").length()>0){
+            book.setAuthor(rs.getString("author"));
+        }
+        if(rs.getString("title").length()>0) {
+            book.setTitle(rs.getString("title"));
+        }
+        if(rs.getString("isbn").length()>0) {
+            book.setIsbn(rs.getString("isbn"));
+        } else {
+            book.setIsbn("not found");
+        }
         return book;
     }
 
