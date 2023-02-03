@@ -75,4 +75,6 @@ CREATE TABLE reading_activity (
     CONSTRAINT FK_family_id FOREIGN KEY (family_id) REFERENCES family (family_id)
 );
 
+INSERT INTO family (family_name) VALUES = ('Smith')
+
 COMMIT TRANSACTION;

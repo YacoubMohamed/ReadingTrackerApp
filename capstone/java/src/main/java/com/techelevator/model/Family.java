@@ -1,21 +1,36 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Family {
+    @JsonProperty("family_name")
     private String familyName;
-    private List<User> familyUsers = new ArrayList<>();
+
+    @JsonProperty("family_id")
     private int familyId;
 
-    public Family(String familyName, List<User> familyUsers, int familyId) {
+   // @JsonProperty("user_id")
+    private int userId;
+
+    public Family(String familyName, int familyId, int userId) {
         this.familyName = familyName;
-        this.familyUsers = familyUsers;
         this.familyId = familyId;
+        this.userId = userId;
     }
 
     public Family() {
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getFamilyName() {
@@ -26,13 +41,7 @@ public class Family {
         this.familyName = familyName;
     }
 
-    public List<User> getFamilyMembers() {
-        return familyUsers;
-    }
 
-    public void setFamilyMembers(List<User> familyUsers) {
-        this.familyUsers = familyUsers;
-    }
 
     public int getFamilyId() {
         return familyId;
