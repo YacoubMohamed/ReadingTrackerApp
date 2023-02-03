@@ -29,7 +29,11 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
+<<<<<<< HEAD
         requiresAuth: true
+=======
+        requiresAuth:true
+>>>>>>> 28319f92130c2c502413cd8057dec7fa34d1e50d
       }
     },
     {

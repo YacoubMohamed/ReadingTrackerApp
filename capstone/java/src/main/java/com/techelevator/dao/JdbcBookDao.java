@@ -5,6 +5,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class JdbcBookDao implements BookDao {
     JdbcTemplate jdbcTemplate;
@@ -16,22 +19,12 @@ public class JdbcBookDao implements BookDao {
 
     @Override
     public Book addBook(Book newBook) {
-//        Book createdBook = new Book ();
         String sql = "INSERT INTO book (author, title, isbn) VALUES (?,?,?) RETURNING book_id";
         Integer newBookId;
-        newBookId = jdbcTemplate.queryForObject(sql,Integer.class, newBook.getAuthor(), newBook.getTitle(), newBook.getIsbn());
-//        getBookId(newBookId);
+        newBookId = jdbcTemplate.queryForObject(sql, Integer.class, newBook.getAuthor(), newBook.getTitle(), newBook.getIsbn());
         return getBookById(newBookId);
-
-        // this sql statements needs a RETURNING
-        // the return gives you back the new book_id that got created
-
-        // we want to use the jdbctemplate to run the above sql
-
-        // we're going to take that book_id and pass it to the getBookId()
-        // method which gives you a back a Book object.
-
     }
+
 
     @Override
     public Book getTile(String title) {
@@ -51,22 +44,33 @@ public class JdbcBookDao implements BookDao {
     @Override
     public Book getBookById(int bookId) {
         Book book;
-
-        // make a sql that returns a row where bookid =
         String sql = "SELECT * FROM book WHERE book_id = ?; ";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql,bookId);
         if (rowSet.next()) {
             book = mapRowToBook (rowSet);
             return book;
         }  else return null;
+    }
 
-        // save the result of the query into a rowset.
-
-        // from within the row set extract the columns that you need
-        // and make a Book object
-
-        // return the book object
-
+    @Override
+    public List<Book> getBookByUserName(String username) {
+        List <Book> books = new ArrayList<>();
+        String sql = "SELECT title FROM book JOIN book_users ON book_users.book_id = book.book_id JOIN users ON book_users.user_id = users.user_id WHERE username = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);
+        while (rowSet.next()) {
+            Book book2 = mapRowToBook(rowSet);
+            books.add(book2);
+        } return books;
+    }
+    @Override
+    public List<Book> getAllBooks() {
+        List<Book> books = new ArrayList<>();
+        String sql = "SELECT * FROM book;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
+        while (rowSet.next()) {
+            books.add(mapRowToBook(rowSet));
+        }
+        return books;
     }
 
     private Book mapRowToBook (SqlRowSet rs) {
