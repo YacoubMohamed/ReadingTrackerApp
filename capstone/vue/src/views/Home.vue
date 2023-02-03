@@ -1,21 +1,65 @@
 <template>
   <div class="home">
-    <h1>Welcome, {{ $store.state.user.username }}!</h1>
-  <div class="prompt">What would you like to do?</div>
+    <div class="div-one">
+      <div class="container-one">
+        <img src="../assets/logo.jpg" alt="Read" />
+      </div>
 
-  <ul>
-    <li class="choice">
-<router-link v-bind:to="{name: 'addBook'}">
-  Manage Books 
-</router-link>
-    </li>
-    <li class="choice">
-<router-link v-bind:to="{name: 'setGoals'}">
-  Manage Goals 
-</router-link>
-    </li>
-  </ul>
+      <div class="container-two">
+        <div class="welcome">
+          <h1>Welcome, {{ $store.state.user.username }}!</h1>
+          <img src="../assets/dad.png" alt="" />
+        </div>
+      </div>
+      <br />
+      <div class="container-three">
+        <div class="prompt">What would you like to do?</div>
 
+        <ul class="menu-nav">
+          <li class="choice">
+            <router-link v-bind:to="{ name: 'manageBooks' }">
+              Your Books
+            </router-link>
+          </li>
+
+          <li class="choice">
+            <router-link v-bind:to="{ name: 'addBook' }">
+              Manage Books
+            </router-link>
+          </li>
+
+          <li class="choice">
+            <router-link v-bind:to="{ name: 'manageFamily' }">
+              Manage Family
+            </router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="div-two">
+      <div class="number-of-books">
+        <p>1000 PAGES</p>
+      </div>
+
+      <div class="graphics">
+        <p>HERE IS THE GRAPH</p>
+      </div>
+
+    </div>
+   
+    <div class="div-three">
+       
+      <div class="spouse">
+        <p> Family Members </p>
+        <img src="../assets/parent.png" alt="" />
+      </div>
+      <div class="child 1">
+        <img src="../assets/girl.png" alt="" />
+      </div>
+      <div class="child 2">
+        <img src="../assets/boy.png" alt="" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -23,32 +67,53 @@
 //import Register from './Register.vue';
 export default {
   //components: { Register },
-  name: "home"
+  name: "home",
 };
 </script>
 
 <style scoped>
 
+
 .home {
-  display: grid;
-  grid-template-areas: 
-    "welcome welcome welcome"
-    "prompt prompt prompt"
-    "choice choice choice"
-  ;
+  background-color: rgb(175, 207, 233); 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.div-one {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+
+}
+.div-two {
+  display: flex;
+  flex-direction: column;
+}
+.div-three {
+  display: flex;
+  flex-direction: column;
 }
 
-h1{
-    grid-area: welcome;
+.container-one {
+  margin-top: 5%;
+}
+
+.div-three img {
+   height: 8rem;
+  border-radius: 50%;
+}
+
+.welcome img {
+  height: 8rem;
+  border-radius: 50%;
+  
 }
 
 .prompt {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
-  padding-left: 2em;
-  padding-right: 2em;
-  width: 70%;
-  grid-area: prompt;
+  width: 100%;
 }
 
 .choice,
@@ -57,6 +122,5 @@ h1{
   font-weight: bold;
   list-style: none;
   text-decoration: none;
-  grid-area: choice;
 }
 </style>
