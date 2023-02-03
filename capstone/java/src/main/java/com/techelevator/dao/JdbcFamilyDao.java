@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Book;
 import com.techelevator.model.Family;
 import com.techelevator.model.FamilyUsers;
 import com.techelevator.model.User;
@@ -28,7 +29,6 @@ public class JdbcFamilyDao extends User implements FamilyDao {
             families.add(mapRowToFamily(rowSet));
         }
         return families;
-
     }
 
     @Override
@@ -42,14 +42,26 @@ public class JdbcFamilyDao extends User implements FamilyDao {
         return familyMembers;
     }
 
-    @Override
-    public Family getFamilyById(int familyId) {
-        return null;
-    }
+//    // @Override
+//  //  public Family getFamilyById(int familyId) {
+//    //    Family family;
+//        String sql = "SELECT * FROM family WHERE family_id = ?; ";
+//        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, familyId);
+//        if (rowSet.next()) {
+//            family = mapRowToFamily(rowSet);
+//            return family;
+//        } else return null;
+//    }
 
     @Override
-    public int findByUsername(String username) {
-        return 0;
+    public int getFamilyByUserId(int userId) {
+       int id = 0; // can this = 0?
+        String sql = "SELECT family_id FROM users WHERE user_id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql,userId);
+        if (rowSet.next()) {
+            id = rowSet.getInt("family_id");
+        }
+        return id;
     }
 
     @Override
@@ -76,8 +88,9 @@ public class JdbcFamilyDao extends User implements FamilyDao {
     }
 
     @Override
-    public void updateFamily() {
-
+    public void updateFamily(String familyName, int familyId) {
+        String sql = "UPDATE family SET family_name = ? WHERE family_id = ?;";
+        jdbcTemplate.update(sql, familyName, familyId);
     }
 
     @Override
@@ -91,10 +104,9 @@ public class JdbcFamilyDao extends User implements FamilyDao {
         //return true;
     }
 
-    @Override
-    public void findAllUsers() {
 
-    }
+
+
     private Family mapRowToFamily (SqlRowSet rs) {
         Family family = new Family();
         family.setFamilyId(rs.getInt("family_id"));

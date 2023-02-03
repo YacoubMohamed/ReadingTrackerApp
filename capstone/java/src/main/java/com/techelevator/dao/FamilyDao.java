@@ -3,19 +3,22 @@ package com.techelevator.dao;
 import com.techelevator.model.Family;
 import com.techelevator.model.User;
 import com.techelevator.model.FamilyUsers;
+import com.techelevator.model.FamilyUpdateDto;
+
 
 import java.util.List;
 
 public interface FamilyDao {
     List<FamilyUsers> getListOfFamilyMembers(int familyId);
     List<Family> getListOfFamilies();
-    Family getFamilyById(int familyId);
-    int findByUsername(String username);
+  //  Family getFamilyById(int familyId);
+    int getFamilyByUserId(int userId);
+  //  int getUsernameByFamily ()
     void addFamily (Family newFamily);
     void deleteFamily (int familyId);
-    void updateFamily ();
+    void updateFamily (String familyName, int familyId);
     void addFamilyMember (int userId, int familyId);
-    void findAllUsers ();
+
 
 
 

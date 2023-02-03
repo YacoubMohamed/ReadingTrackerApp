@@ -18,26 +18,30 @@ public class JdbcBookDao implements BookDao {
     }
 
     @Override
-    public Book addBook(Book newBook) {
+    public void addBook (Book newBook) {
         String sql = "INSERT INTO book (author, title, isbn) VALUES (?,?,?) RETURNING book_id";
         Integer newBookId;
         newBookId = jdbcTemplate.queryForObject(sql, Integer.class, newBook.getAuthor(), newBook.getTitle(), newBook.getIsbn());
-        return getBookById(newBookId);
+   //     return getBookById(newBookId);
     }
 
+    @Override
+    public void deleteBook(String isbn) {
+        
+    }
 
     @Override
-    public Book getTile(String title) {
+    public Book getByTile(String title) {
         return null;
     }
 
     @Override
-    public Book getAuthor(String author) {
+    public Book getByAuthor(String author) {
         return null;
     }
 
     @Override
-    public Book getIsbn(String isbn) {
+    public Book getByIsbn(String isbn) {
         return null;
     }
 
@@ -53,7 +57,7 @@ public class JdbcBookDao implements BookDao {
     }
 
     @Override
-    public List<Book> getBookByUserName(String username) {
+    public List<Book> getBookByUsername(String username) {
         List <Book> books = new ArrayList<>();
         String sql = "SELECT * FROM book JOIN book_users ON book_users.book_id = book.book_id JOIN users ON book_users.user_id = users.user_id WHERE username = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);

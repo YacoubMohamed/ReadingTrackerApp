@@ -26,6 +26,6 @@ public class BookController {
     @RequestMapping(path = "/book/list", method = RequestMethod.GET)
     public List<Book> listAllBooks (Principal principal) throws UsernameNotFoundException {
         List<Book> allBooks = new ArrayList<>();
-        allBooks = bookDao.getBookByUserName(principal.getName());
+        allBooks = bookDao.getBookByUsername(principal.getName());
         return allBooks;
 } }
