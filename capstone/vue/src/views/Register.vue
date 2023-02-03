@@ -8,7 +8,7 @@
 <input v-model = "user.userRole" type="radio" name = "userRole" value= "parent"/>
 <label for="parent">Parent</label>
 <br/>
-<input v-model = "user.userRole" type="radio" name = "userRole" value= "child"/>
+<input v-model = "user.userRole" type="radio" name = "userRole" value= "child" />
 <label for="child">Child</label>
 <br/>
       <label for="username" class="sr-only">Username</label>
@@ -39,6 +39,9 @@
         required
       />
       <br/>
+      <div v-if="user.userRole === 'child'">
+        I AM A CHILD
+      </div>
       <input v-model = "user.ageCheck"
       type = "checkbox" name = "agecheck"/> 
       <label for= " agecheck">  Are you older than 13? </label>
@@ -48,7 +51,9 @@
         Create Account
       </button>
     </form>
+
   </div>
+
 </template>
 
 <script>

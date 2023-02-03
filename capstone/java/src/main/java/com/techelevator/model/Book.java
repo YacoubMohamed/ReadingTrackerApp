@@ -1,9 +1,12 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Book {
     private String author;
     private String title;
     private int bookId;
+    @JsonProperty("isbn")
     private String isbn;
 
     public Book(String author, String title, int bookId, String isbn) {

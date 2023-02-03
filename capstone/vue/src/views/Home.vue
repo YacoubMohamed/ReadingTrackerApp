@@ -1,34 +1,65 @@
 <template>
   <div class="home">
-    <div class="main">
-      <h2>Grace is happy</h2>
-    </div>
-    <div class="welcome">
-    <h1>Welcome, {{ $store.state.user.username }}!</h1>
-    </div>
-  <div class="prompt">What would you like to do?</div>
+    <div class="div-one">
+      <div class="container-one">
+        <img src="../assets/logo.jpg" alt="Read" />
+      </div>
 
-  <ul class="menu-nav">
-    
-    <div id = "booklist">
-      <li class="choice">
-      <router-link v-bind:to="{ name: 'manageBooks' }">
-          Your Books
-        </router-link>
-        </li>
-    </div>
-    <li class="choice">
-<router-link v-bind:to="{name: 'addBook'}">
-  Manage Books 
-</router-link>
-    </li>
-    <li class="choice">
-<router-link v-bind:to="{name: 'manageFamily'}">
-  Manage Family
-</router-link>
-    </li>
-  </ul>
+      <div class="container-two">
+        <div class="welcome">
+          <h1>Welcome, {{ $store.state.user.username }}!</h1>
+          <img src="../assets/dad.png" alt="" />
+        </div>
+      </div>
+      <br />
+      <div class="container-three">
+        <div class="prompt">What would you like to do?</div>
 
+        <ul class="menu-nav">
+          <li class="choice">
+            <router-link v-bind:to="{ name: 'manageBooks' }">
+              Your Books
+            </router-link>
+          </li>
+
+          <li class="choice">
+            <router-link v-bind:to="{ name: 'addBook' }">
+              Manage Books
+            </router-link>
+          </li>
+
+          <li class="choice">
+            <router-link v-bind:to="{ name: 'manageFamily' }">
+              Manage Family
+            </router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="div-two">
+      <div class="number-of-books">
+        <p class="infographic">1000 PAGES</p>
+      </div>
+
+      <div class="graphics">
+        <p class="infographic">HERE IS THE GRAPH</p>
+      </div>
+
+    </div>
+   
+    <div class="div-three">
+       
+      <div class="spouse">
+        <p> Family Members </p>
+        <img src="../assets/parent.png" alt="" />
+      </div>
+      <div class="child 1">
+        <img src="../assets/girl.png" alt="" />
+      </div>
+      <div class="child 2">
+        <img src="../assets/boy.png" alt="" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -36,43 +67,59 @@
 //import Register from './Register.vue';
 export default {
   //components: { Register },
-  name: "home"
+  name: "home",
 };
 </script>
 
 <style scoped>
 
+
 .home {
-  display: grid;
-  grid-template-areas: 
-    "welcome main main"
-    "prompt main main"
-    "menu-nav main main"
-  ;
+  background-color: rgb(175, 207, 233); 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
-/* #booklist {
-  grid-area: booklist;
-} */
+.div-one {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
 
+}
+.div-two {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.infographic {
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 5em;
+}
+.div-three {
+  display: flex;
+  flex-direction: column;
+}
 
-.menu-nav {
-  grid-area: menu-nav;
+.container-one {
+  margin-top: 5%;
 }
-.main {
-  grid-area: main;
+
+.div-three img {
+   height: 8rem;
+  border-radius: 50%;
 }
-.welcome {
-  padding-left: 2em;
-  grid-area: welcome;
+
+.welcome img {
+  height: 8rem;
+  border-radius: 50%;
+  
 }
 
 .prompt {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
-  padding-left: 2em;
-  padding-right: 2em;
-  width: 70%;
-  grid-area: prompt;
+  width: 100%;
 }
 
 .choice,
@@ -81,6 +128,5 @@ export default {
   font-weight: bold;
   list-style: none;
   text-decoration: none;
-  grid-area: choice;
 }
 </style>
