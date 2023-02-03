@@ -1,8 +1,10 @@
 <template>
   
   <div class="main mx-auto">
+    <div class="list">
       <h1>Book List</h1>
       <book-list/>
+      </div>
   </div>
 </template>
 
@@ -13,6 +15,9 @@ components: {BookList},
 }
 </script>
 
-<style>
-
+<style scoped>
+.list {
+  height: 100vh;
+  background-color: rgb(16, 141, 199);
+}
 </style>
