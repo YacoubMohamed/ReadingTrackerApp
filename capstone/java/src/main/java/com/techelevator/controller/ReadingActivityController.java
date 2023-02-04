@@ -44,7 +44,7 @@ public class ReadingActivityController {
         readingActivityDao.deleteActivity(activityId);
     }
 
-    @RequestMapping(path = "/updatePrize/{prizeId}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/updateActivity/{activityId}", method = RequestMethod.PUT)
     void updateActivity (ReadingActivity updateActivity, int activityId) {
         readingActivityDao.updateActivity(updateActivity, activityId);
     }

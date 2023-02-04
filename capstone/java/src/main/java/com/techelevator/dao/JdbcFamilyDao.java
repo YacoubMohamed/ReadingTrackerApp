@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 @Component
-public class JdbcFamilyDao extends User implements FamilyDao {
+public class JdbcFamilyDao implements FamilyDao {
 
     private JdbcTemplate jdbcTemplate;
 
