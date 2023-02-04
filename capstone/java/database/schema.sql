@@ -43,7 +43,7 @@ CREATE TABLE book_users (
 CREATE TABLE prizes (
    prize_id SERIAL,
    family_id INTEGER,
-   user_id INTEGER, --only include if it's important to know who originated the prize
+--   user_id INTEGER, --only include if it's important to know who originated the prize
    prize_name varchar (100),
    prize_description varchar (100),
    milestone INTEGER,
