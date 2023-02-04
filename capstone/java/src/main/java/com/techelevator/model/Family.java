@@ -13,24 +13,25 @@ public class Family {
     @JsonProperty("family_id")
     private int familyId;
 
-   // @JsonProperty("user_id")
-//    private int userId;
+    @JsonProperty("user_id")
+    private int userId;
 
     public Family(String familyName, int familyId) {
         this.familyName = familyName;
         this.familyId = familyId;
     }
 
+
     public Family() {
     }
 
-//    public int getUserId() {
-//        return userId;
-//    }
-//
-//    public void setUserId(int userId) {
-//        this.userId = userId;
-//    }
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getFamilyName() {
         return familyName;
