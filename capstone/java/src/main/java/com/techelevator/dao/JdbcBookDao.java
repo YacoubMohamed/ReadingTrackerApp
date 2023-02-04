@@ -27,7 +27,7 @@ public class JdbcBookDao implements BookDao {
 
     @Override
     public void deleteBook(String isbn) {
-        String sql = "DELETE FROM books WHERE isbn = ?;";
+        String sql = "DELETE FROM book WHERE isbn = ?;";
         jdbcTemplate.update(sql, isbn);
 
     }
@@ -35,7 +35,7 @@ public class JdbcBookDao implements BookDao {
     @Override
     public Book getByTile(String title) {
         Book book = null;
-        String sql = "SELECT * FROM books WHERE title ILIKE ?;";
+        String sql = "SELECT * FROM book WHERE title ILIKE ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, title);
         if (rowSet.next()) {
             book = mapRowToBook(rowSet);
@@ -46,7 +46,7 @@ public class JdbcBookDao implements BookDao {
     @Override
     public Book getByAuthor(String author) {
         Book book = null;
-        String sql = "SELECT * FROM books WHERE author = ?;";
+        String sql = "SELECT * FROM book WHERE author = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, author);
         if (rowSet.next()) {
             book = mapRowToBook(rowSet);
@@ -57,7 +57,7 @@ public class JdbcBookDao implements BookDao {
     @Override
     public Book getByIsbn(String isbn) {
         Book book = null;
-        String sql = "SELECT * FROM books WHERE isbn = ?;";
+        String sql = "SELECT * FROM book WHERE isbn = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, isbn);
         if (rowSet.next()) {
             book = mapRowToBook(rowSet);

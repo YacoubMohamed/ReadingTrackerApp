@@ -48,25 +48,25 @@ public class BookController {
 
     // do we need getBooksByUserId? getBooksByFamilyId?
 
-    @RequestMapping(path = "/books/{title}")
+    @RequestMapping(path = "/books/title/{title}")
     public Book getByTile (@PathVariable String title) {
         Book book = bookDao.getByTile(title);
         return book;
     }
 
-    @RequestMapping(path = "/books/{isbn}")
+    @RequestMapping(path = "/books/isbn/{isbn}")
     public Book getByIsbn (@PathVariable String isbn) {
         Book book = bookDao.getByIsbn(isbn);
         return book;
     }
 
-    @RequestMapping(path = "/books/{bookId}")
+    @RequestMapping(path = "/books/book/{bookId}")
     public Book getById (@PathVariable int bookId) {
         Book book = bookDao.getBookById(bookId);
         return book;
     }
 
-    @RequestMapping(path = "/books/{author}")
+    @RequestMapping(path = "/books/author/{author}")
     public Book getByAuthor (@PathVariable String author) {
         Book book = bookDao.getByAuthor(author);
         return book;
