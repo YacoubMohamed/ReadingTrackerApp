@@ -9,8 +9,9 @@ public interface ReadingActivityDao {
     List <ReadingActivity> getAllReadingActivities ();
     int getReadingTimeByUserId (int userId);
     int getReadingTimeByFamilyId (int familyId);
-    void addActivity ();
-    void deleteActivity ();
-    void updateActivity ();
+    void addActivity (ReadingActivity newActivity); // needs work
+    void deleteActivity (int activityId);
+    void updateActivity (ReadingActivity updateActivity, int activityId);
+
 
 }

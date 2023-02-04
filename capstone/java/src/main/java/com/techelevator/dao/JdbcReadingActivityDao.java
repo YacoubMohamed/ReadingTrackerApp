@@ -30,26 +30,41 @@ public class JdbcReadingActivityDao implements ReadingActivityDao{
 
     @Override
     public int getReadingTimeByUserId(int userId) {
-        return 0;
+        String sql = "SELECT sum(time_read) FROM reading_activity WHERE user_id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userId);
+        if (rowSet.next()) {
+            return rowSet.getInt("sum"); //total time read added together
+        }
+        return 0; // doesn't exist
     }
 
     @Override
     public int getReadingTimeByFamilyId(int familyId) {
+        String sql = "SELECT sum(time_read) FROM reading_activity WHERE family_id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, familyId);
+        if (rowSet.next()) {
+            return rowSet.getInt("sum");
+        }
         return 0;
     }
 
     @Override
-    public void addActivity() {
+    public void addActivity(ReadingActivity newActivity) {
 
     }
 
     @Override
-    public void deleteActivity() {
+    public void deleteActivity(int activityId) {
+        String sql = "DELETE FROM reading_activity WHERE activity_id = ?;";
+        jdbcTemplate.update(sql, activityId);
+
 
     }
 
     @Override
-    public void updateActivity() {
+    public void updateActivity(ReadingActivity updateActivity, int activityId) {
+        String sql = "UPDATE reading_activity SET book_id = ?, time_read = ?, book_format = ?, notes = ?;";
+        jdbcTemplate.update(sql, updateActivity.getBookId(), updateActivity.getTimeRead(), updateActivity.getBookFormat(), updateActivity.getNotes());
 
     }
 
