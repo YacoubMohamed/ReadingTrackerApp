@@ -21,7 +21,7 @@ public class FamilyController {
         familyDao.addFamily(newFamily);
     }
 
-    @RequestMapping(path = "/deleteFamily/{familyId}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/deleteFamily/{familyId}", method = RequestMethod.DELETE)
     public void deleteFamily(@PathVariable int familyId) {
         familyDao.deleteFamily(familyId);
     }

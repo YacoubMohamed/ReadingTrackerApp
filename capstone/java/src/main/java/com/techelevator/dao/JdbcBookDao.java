@@ -27,22 +27,42 @@ public class JdbcBookDao implements BookDao {
 
     @Override
     public void deleteBook(String isbn) {
-        
+        String sql = "DELETE FROM books WHERE isbn = ?;";
+        jdbcTemplate.update(sql, isbn);
+
     }
 
     @Override
     public Book getByTile(String title) {
-        return null;
+        Book book = null;
+        String sql = "SELECT * FROM books WHERE title ILIKE ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, title);
+        if (rowSet.next()) {
+            book = mapRowToBook(rowSet);
+        }
+        return book;
     }
 
     @Override
     public Book getByAuthor(String author) {
-        return null;
+        Book book = null;
+        String sql = "SELECT * FROM books WHERE author = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, author);
+        if (rowSet.next()) {
+            book = mapRowToBook(rowSet);
+        }
+        return book;
     }
 
     @Override
     public Book getByIsbn(String isbn) {
-        return null;
+        Book book = null;
+        String sql = "SELECT * FROM books WHERE isbn = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, isbn);
+        if (rowSet.next()) {
+            book = mapRowToBook(rowSet);
+        }
+        return book;
     }
 
     @Override
@@ -57,7 +77,7 @@ public class JdbcBookDao implements BookDao {
     }
 
     @Override
-    public List<Book> getBookByUsername(String username) {
+    public List<Book> getBooksByUsername(String username) {
         List <Book> books = new ArrayList<>();
         String sql = "SELECT * FROM book JOIN book_users ON book_users.book_id = book.book_id JOIN users ON book_users.user_id = users.user_id WHERE username = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);
