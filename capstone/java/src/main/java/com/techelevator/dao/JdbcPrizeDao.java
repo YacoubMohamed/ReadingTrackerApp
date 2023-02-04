@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Book;
 import com.techelevator.model.Prize;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -17,15 +18,17 @@ public class JdbcPrizeDao implements PrizeDao {
     }
 
     @Override
-    public void addPrizeToUser() {
+    public void addPrizeToUser(Prize newPrize) {
         String sql = "INSERT INTO prize (prize_name, prize_description, milestone, start_date,end_date) VALUES (?,?,?,?,?) RETURNING prize_id";
-        Integer newPrizeId;
+        jdbcTemplate.update(sql, newPrize.getPrizeName(), newPrize.getPrizeDescription(), newPrize.getStartDate(),newPrize.getMilestone(),newPrize.getEndDate());
     }
 
     @Override
-    public void addPrizeToFamily() {
-
+    public void addPrizeToFamily(Prize newPrize) {
+        String sql = "INSERT INTO prize (prize_name, prize_description, milestone, start_date,end_date) VALUES (?,?,?,?,?) RETURNING prize_id";
+        jdbcTemplate.update(sql, newPrize.getPrizeName(), newPrize.getPrizeDescription(), newPrize.getStartDate(),newPrize.getMilestone(),newPrize.getEndDate());
     }
+
 
     @Override
     public void deletePrize(int prizeId) {
@@ -40,7 +43,7 @@ public class JdbcPrizeDao implements PrizeDao {
     }
 
     @Override
-    public List<Prize> getAllPrizes(int familyId) {
+    public List<Prize> getAllPrizesByFamilyId(int familyId) {
         List<Prize> prizeList = new ArrayList<>();
         String sql = "SELECT * FROM prizes WHERE family_id = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, familyId);
@@ -52,18 +55,28 @@ public class JdbcPrizeDao implements PrizeDao {
 
     @Override
     public Prize getPrizesById(int prizesId) {
+        Prize prize = new Prize();
+        String sql = "SELECT * FROM prize WHERE prize_id = ?";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, prizesId);
+        if (rowSet.next()) {
+            prize = mapRowToPrizes(rowSet);
 
-        return null;
+        }
+        return prize;
+
     }
 
-    @Override
-    public Prize getPrizesByFamilyId(int familyId) {
-        return null;
-    }
+
 
     @Override
-    public Prize getPrizesByUserId(int userId) {
-        return null;
+    public List<Prize> getAllPrizesByUserId(int userId) {
+        List<Prize> getPrizeListByUserId = new ArrayList<>();
+        String sql = "SELECT * FROM prizes WHERE user_id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userId);
+        while (rowSet.next()) {
+            getPrizeListByUserId.add(mapRowToPrizes(rowSet));
+        }
+        return getPrizeListByUserId;
     }
 
 

@@ -8,11 +8,10 @@ public interface PrizeDao {
 
     void deletePrize (int prizeId);
     void updatePrize (Prize prize);
-    List<Prize> getAllPrizes (int familyId);
+    List<Prize> getAllPrizesByFamilyId(int familyId);
     Prize getPrizesById (int prizesId);
-    Prize getPrizesByFamilyId (int familyId);
-    Prize getPrizesByUserId (int userId);
-    void addPrizeToUser();
-    void addPrizeToFamily();
+    List<Prize> getAllPrizesByUserId(int userId);
+    void addPrizeToUser(Prize newPrize);
+    void addPrizeToFamily(Prize newPrize);
 
 }
