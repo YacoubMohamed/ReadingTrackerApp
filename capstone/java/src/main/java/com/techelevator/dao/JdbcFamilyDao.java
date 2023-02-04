@@ -66,8 +66,8 @@ public class JdbcFamilyDao extends User implements FamilyDao {
 
     @Override
     public void addFamily(Family newFamily) {
-        String sql = "INSERT INTO family (family_name) VALUES (?);";
-        jdbcTemplate.update(sql, newFamily.getFamilyName());
+        String sql = "INSERT INTO family (family_name, user_id) VALUES (?,?);";
+        jdbcTemplate.update(sql, newFamily.getFamilyName(), newFamily.getUserId());
 //        String sql = "INSERT INTO family (family_name, user_id) VALUES (?, ?);";
 //        jdbcTemplate.update(sql, newFamily.getFamilyName(), newFamily.getUserId());
         // try {

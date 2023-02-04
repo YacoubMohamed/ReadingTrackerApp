@@ -8,8 +8,12 @@ export default {
   getBooks() {
     return axios.get('/book/list')
   },
-  displayFamily() {
-    return axios.get('/family')
-  }
+  // displayFamily() {
+  //   return axios.get('/family/list/${familyId}')
+  // },
+  addFamily(family) {
+    return axios.post('/addFamily', family)
+  },
+
 
 }

@@ -8,7 +8,7 @@
       <div class="container-two">
         <div class="welcome">
           <h1>Welcome, {{ $store.state.user.username }}!</h1>
-          <img src="../assets/dad.png" alt="" />
+          <img src="../assets/book.webp" alt="" />
         </div>
       </div>
       <br />
@@ -51,13 +51,13 @@
        
       <div class="spouse">
         <p> Family Members </p>
-        <img src="../assets/parent.png" alt="" />
+        <img src="../assets/bookworm.jpg" alt="" />
       </div>
       <div class="child 1">
-        <img src="../assets/girl.png" alt="" />
+        <img src="../assets/baby.jpg" alt="" />
       </div>
       <div class="child 2">
-        <img src="../assets/boy.png" alt="" />
+        <img src="../assets/funnyboy.jpg" alt="" />
       </div>
     </div>
   </div>
@@ -75,15 +75,17 @@ export default {
 
 
 .home {
+  height: 100vh;
   background-color: rgb(175, 207, 233); 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .div-one {
+    height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: stretch;
+justify-content: space-around;
 
 }
 .div-two {
@@ -95,10 +97,13 @@ export default {
   border: 1px solid black;
   border-radius: 2px;
   padding: 5em;
+  background-color: rgb(212, 187, 214);
 }
 .div-three {
+    height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 }
 
 .container-one {
