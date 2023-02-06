@@ -8,10 +8,9 @@
       <div class="container-two">
         <div class="welcome">
           <h1>Welcome, {{ $store.state.user.username }}!</h1>
-          <img src="../assets/book.webp" alt="" />
+          <img id="books" src="../assets/book.webp" alt="" />
         </div>
       </div>
-      <br />
       <div class="container-three">
         <div class="prompt">What would you like to do?</div>
 
@@ -44,13 +43,20 @@
       <div class="graphics">
         <p class="infographic">HERE IS THE GRAPH</p>
       </div>
+            <div class="number-of-books">
+        <p class="infographic">3 books til your next goal!</p>
+      </div>
+
+      <div class="graphics">
+        <p class="infographic">HERE IS THE GRAPH</p>
+      </div>
 
     </div>
    
     <div class="div-three">
        
       <div class="spouse">
-        <p> Family Members </p>
+        <h3> Family Members </h3>
         <img src="../assets/bookworm.jpg" alt="" />
       </div>
       <div class="child 1">
@@ -73,56 +79,96 @@ export default {
 
 <style scoped>
 
+#books {
+  margin-left: 3em;
+}
 
 .home {
-  height: 100vh;
-  background-color: rgb(175, 207, 233); 
+  height: 100%;
+  background-color: rgb(241, 238, 238); 
   display: flex;
+  flex-basis: 25%;
   flex-direction: row;
   justify-content: space-between;
+  box-shadow: inset 0 0 10px rgb(192, 189, 189);
+  border-radius: 5px;
 }
 .div-one {
-    height: 100vh;
+  height: 100vh;
   display: flex;
+  align-content: center;
   flex-direction: column;
-justify-content: space-around;
-
+  justify-content: top;
+  box-shadow: inset 0 0 10px rgb(192, 189, 189);
+  
+  border-radius: 5px;
+  padding: 1em;
 }
+
+h1 {
+  padding-top: 1em;
+  margin-left: .5em;
+  color: #035149;
+  font-size: 25px;
+}
+
+h3 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  color: #035149;
+}
+
 .div-two {
   display: flex;
-  flex-direction: column;
+  flex-grow: 2;
+  flex-wrap: wrap;
   justify-content: space-around;
+  border-radius: 5px;
+  padding: 3em;
 }
 .infographic {
-  border: 1px solid black;
-  border-radius: 2px;
-  padding: 5em;
-  background-color: rgb(212, 187, 214);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0px ;
+  border-radius: 20px;
+  box-shadow: inset 0 0 15px rgb(160, 158, 158);
+  width: 250px;
+  height: 200px;
+  background-color: #2ab675;
+  color: rgb(241, 238, 238);
 }
 .div-three {
-    height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  padding: 2em;
 }
 
 .container-one {
+  padding: .5em 2em 0em 1.5em;
   margin-top: 5%;
 }
+.container-three {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2em;
+}
+
 
 .div-three img {
-   height: 8rem;
+  height: 8rem;
   border-radius: 50%;
 }
 
 .welcome img {
   height: 8rem;
   border-radius: 50%;
-  
 }
 
 .prompt {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   width: 100%;
 }
@@ -133,5 +179,6 @@ justify-content: space-around;
   font-weight: bold;
   list-style: none;
   text-decoration: none;
+  margin-top: 10px;
 }
 </style>

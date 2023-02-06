@@ -1,6 +1,7 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
+      <img src="../assets/otherlogo.svg" alt="Read" />
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
         class="alert alert-danger"
@@ -12,6 +13,7 @@
         role="alert"
         v-if="this.$route.query.registration"
       >Thank you for registering, please sign in.</div>
+          
       <label for="username" class="sr-only">Username</label>
       <input
         type="text"
@@ -33,7 +35,7 @@
       />
       <div id="bottom-buttons">
       <router-link id="account" :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button> </div>
+      <button id="signin" type="submit">Sign in</button> </div>
     </form>
   </div>
 </template>
@@ -79,14 +81,42 @@ export default {
 .alert  {
 color: red;
 }
+
+img {
+  padding-top: 1em;
+  max-width: 90%;
+}
+#signin {
+  background-color: #2ab675;
+  border: 2px solid #035349
+  ;
+}
+
+.form-signin {
+  border: 1px solid rgb(150, 145, 145);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 20px 20px 20px;
+  background-color: rgb(241, 238, 238);
+  box-shadow: inset 0 0 15px rgb(93, 134, 125);
+  width: 25em;
+  margin-top: 35px;
+  height: 75%;
+}
 #account {
   text-decoration: none;
   margin-right: 25px;
   padding-top: 25px;
+  color: #035349;
 }
 h1 {
   border: none;
   padding-bottom: 0em;
+  padding-top: .5em;
+  margin-top: .5em;
+  color: #035349;
 }
 #login {
   padding-left: 1em;
@@ -95,8 +125,12 @@ h1 {
   padding-top: 1em;
 }
 .text-center {
-  background-color: rgb(245, 247, 177);
-   height: 100vh;
+  background-color: rgb(241, 238, 238);
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  box-shadow: inset 0 0 10px rgb(192, 189, 189);
+  border-radius: 5px;
 }
 
 </style>

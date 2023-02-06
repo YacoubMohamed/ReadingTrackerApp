@@ -61,7 +61,6 @@
       />
       <br />
      
-      <br />
       <div class="account">
 
       <div class="cont1">
@@ -144,10 +143,25 @@ export default {
 }
 .container-register {
   height: 100vh;
-  background-color: rgb(128, 192, 178);
+  background-color: rgb(201, 233, 226);
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.form-register {
+  border: 1px solid rgb(150, 145, 145);
+  border-radius: 10px;
+  margin-top: 3em;
+  padding: 0px 20px 20px 20px;
+   background-color: rgb(162, 204, 195);
+  box-shadow: inset 0 0 15px rgb(128, 192, 178);
+
+}
+
+h1 {
+  padding: .5em 1em 0em 1.5em;
+
 }
 
 </style>

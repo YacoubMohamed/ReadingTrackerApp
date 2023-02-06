@@ -5,6 +5,7 @@ import com.techelevator.dao.UserDao;
 import com.techelevator.model.Family;
 import com.techelevator.model.FamilyUsers;
 import com.techelevator.model.FamilyUpdateDto;
+import com.techelevator.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,10 @@ public class FamilyController {
         int id = userDao.findIdByUsername(principal.getName());
         newFamily.setUserId(id);
         familyDao.addFamily(newFamily);
+    }
+    @RequestMapping(path = "/displayUsers", method = RequestMethod.GET)
+    public List<User> findAllUsers() {
+        return userDao.findAll();
     }
 
     @RequestMapping(path = "/deleteFamily/{familyId}", method = RequestMethod.DELETE)
