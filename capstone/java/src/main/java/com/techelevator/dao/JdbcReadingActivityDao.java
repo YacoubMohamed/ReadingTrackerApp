@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class JdbcReadingActivityDao implements ReadingActivityDao{
 
-    private JdbcTemplate jdbcTemplate;
+    JdbcTemplate jdbcTemplate;
 
     public JdbcReadingActivityDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -50,6 +50,8 @@ public class JdbcReadingActivityDao implements ReadingActivityDao{
 
     @Override
     public void addActivity(ReadingActivity newActivity) {
+        String sql = "INSERT INTO reading_activity (user_id, family_id, book_id, time_read, book_format, notes) VALUES (?,?,?,?,?,?);";
+        jdbcTemplate.update(sql, newActivity.getUserId(), newActivity.getFamilyId(), newActivity.getBookId(), newActivity.getTimeRead(), newActivity.getBookFormat(), newActivity.getNotes());
 
     }
 

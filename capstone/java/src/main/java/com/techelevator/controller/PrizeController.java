@@ -52,6 +52,7 @@ public class PrizeController {
     public List<Prize> getAllPrizesByFamilyId(@PathVariable int familyId) {
         return prizeDao.getAllPrizesByFamilyId(familyId);
     }
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(path = "/deletePrize/{prizeId}", method = RequestMethod.DELETE)
     public void deletePrize(@PathVariable int prizeId) {

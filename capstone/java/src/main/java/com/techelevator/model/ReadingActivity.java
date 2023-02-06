@@ -1,12 +1,21 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ReadingActivity {
+
     private int activityId;
+    @JsonProperty ("user_id")
     private int userId;
+    @JsonProperty ("family_id")
     private int familyId;
+    @JsonProperty ("book_id")
     private int bookId;
+    @JsonProperty ("time_read")
     private int timeRead;
+    @JsonProperty ("book_format")
     private String bookFormat;
+    @JsonProperty ("notes")
     private String notes;
     // private String dateStarted;
     // private String dateFinished;

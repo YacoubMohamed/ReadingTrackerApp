@@ -68,7 +68,7 @@ CREATE TABLE reading_activity (
     user_id INTEGER,
     family_id INTEGER,
     book_id INTEGER,
-    time_read int,
+    time_read INTEGER,
     book_format varchar (50),
     notes varchar (1000),
    -- date_started DATE,

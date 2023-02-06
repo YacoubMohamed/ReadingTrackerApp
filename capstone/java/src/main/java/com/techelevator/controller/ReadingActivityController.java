@@ -1,12 +1,11 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.FamilyDao;
 import com.techelevator.dao.ReadingActivityDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.model.ReadingActivity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,35 +16,41 @@ public class ReadingActivityController {
     @Autowired
     private ReadingActivityDao readingActivityDao;
 
+    @Autowired
+    private UserDao userDao;
+
+    @Autowired
+    private FamilyDao familyDao;
+
     @RequestMapping(path = "/activities")
-    List<ReadingActivity> getAllReadingActivities() {
+    public List<ReadingActivity> getAllReadingActivities() {
         List<ReadingActivity> activityList = readingActivityDao.getAllReadingActivities();
         return activityList;
     }
 
-    @RequestMapping(path = "/activities/timeRead/{user_id}")
-    int getReadingTimeByUserId (int userId){
+    @RequestMapping(path = "/activities/user/{userId}")
+    public int getReadingTimeByUserId (@PathVariable int userId){
         return readingActivityDao.getReadingTimeByUserId(userId);
     }
 
-    @RequestMapping(path = "/activities/timeRead/{family_id}")
-    int getReadingTimeByFamilyId (int familyId) {
+    @RequestMapping(path = "/activities/family/{familyId}")
+    public int getReadingTimeByFamilyId (@PathVariable int familyId) {
         return readingActivityDao.getReadingTimeByFamilyId(familyId);
     }
 
     @RequestMapping(path = "/addActivity", method = RequestMethod.POST)
-    void addActivity (ReadingActivity newActivity) {
+    public void addActivity (@RequestBody ReadingActivity newActivity) {
+        readingActivityDao.addActivity(newActivity);
     }
 
     @RequestMapping(path = "/deleteActivity/{activityId}", method = RequestMethod.DELETE)
-    void deleteActivity (int activityId) {
+    public void deleteActivity (@PathVariable int activityId) {
         // NEEDS PARENT-ONLY PERMISSIONS
-        // Principal principal as second parameter
         readingActivityDao.deleteActivity(activityId);
     }
 
     @RequestMapping(path = "/updateActivity/{activityId}", method = RequestMethod.PUT)
-    void updateActivity (ReadingActivity updateActivity, int activityId) {
+    public void updateActivity (@RequestBody ReadingActivity updateActivity, @PathVariable int activityId) {
         readingActivityDao.updateActivity(updateActivity, activityId);
     }
 
