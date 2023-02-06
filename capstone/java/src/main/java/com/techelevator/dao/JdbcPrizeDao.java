@@ -16,17 +16,17 @@ public class JdbcPrizeDao implements PrizeDao {
     public JdbcPrizeDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
+/*
     @Override
     public void addPrizeToUser(Prize newPrize) {
-        String sql = "INSERT INTO prize (prize_name, prize_description, milestone, start_date,end_date) VALUES (?,?,?,?,?) RETURNING prize_id";
-        jdbcTemplate.update(sql, newPrize.getPrizeName(), newPrize.getPrizeDescription(), newPrize.getStartDate(),newPrize.getMilestone(),newPrize.getEndDate());
-    }
+        String sql = "INSERT INTO prizes (prize_name, prize_description, milestone, start_date,end_date) VALUES (?,?,?,?,?) RETURNING prize_id";
+        jdbcTemplate.update(sql, newPrize.getPrizeName(), newPrize.getPrizeDescription(), newPrize.getMilestone(),newPrize.getStartDate(),newPrize.getEndDate());
+    }*/
 
     @Override
     public void addPrizeToFamily(Prize newPrize) {
-        String sql = "INSERT INTO prize (prize_name, prize_description, milestone, start_date,end_date) VALUES (?,?,?,?,?) RETURNING prize_id";
-        jdbcTemplate.update(sql, newPrize.getPrizeName(), newPrize.getPrizeDescription(), newPrize.getStartDate(),newPrize.getMilestone(),newPrize.getEndDate());
+        String sql = "INSERT INTO prizes (family_id, prize_name, prize_description, milestone, start_date,end_date) VALUES (?,?,?,?,?,?)";
+        jdbcTemplate.update(sql, newPrize.getFamilyId(), newPrize.getPrizeName(), newPrize.getPrizeDescription(),newPrize.getMilestone(), newPrize.getStartDate(),newPrize.getEndDate());
     }
 
 
@@ -38,8 +38,8 @@ public class JdbcPrizeDao implements PrizeDao {
 
     @Override
     public void updatePrize(Prize prize) {
-        String sql = "UPDATE prizes SET prize_name = ?, prize_description = ?, milestone = ?, max_prizes = ?, start_date = ?, end_date = ?;";
-        jdbcTemplate.update(sql, prize.getPrizeName(), prize.getPrizeDescription(), prize.getMilestone(), prize.getMaxPrizes(), prize.getStartDate(), prize.getEndDate());
+        String sql = "UPDATE prizes SET, prize_name = ?, prize_description = ?, milestone = ?, max_prizes = ?, start_date = ?, end_date = ? WHERE prize_id = ?;";
+        jdbcTemplate.update(sql,prize.getPrizeId(), prize.getPrizeName(), prize.getPrizeDescription(), prize.getMilestone(), prize.getMaxPrizes(), prize.getStartDate(), prize.getEndDate());
     }
 
     @Override
@@ -56,7 +56,7 @@ public class JdbcPrizeDao implements PrizeDao {
     @Override
     public Prize getPrizesById(int prizesId) {
         Prize prize = new Prize();
-        String sql = "SELECT * FROM prize WHERE prize_id = ?";
+        String sql = "SELECT * FROM prizes WHERE prize_id = ?";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, prizesId);
         if (rowSet.next()) {
             prize = mapRowToPrizes(rowSet);
@@ -87,7 +87,7 @@ public class JdbcPrizeDao implements PrizeDao {
         prize.setEndDate(rowSet.getDate("end_date"));
         prize.setStartDate(rowSet.getDate("start_date"));
         prize.setMaxPrizes(rowSet.getInt("max_prizes"));
-        prize.setUserId(rowSet.getInt("user_id"));
+       // prize.setUserId(rowSet.getInt("user_id"));
         prize.setPrizeDescription(rowSet.getString("prize_description"));
         prize.setPrizeName(rowSet.getString("prize_name"));
         prize.setMilestone(rowSet.getInt("milestone"));

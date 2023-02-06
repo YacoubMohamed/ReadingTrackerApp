@@ -2,10 +2,12 @@ package com.techelevator.controller;
 
 
 import com.techelevator.dao.PrizeDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.model.Book;
 import com.techelevator.model.Family;
 import com.techelevator.model.Prize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,20 +15,25 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
+@PreAuthorize("isAuthenticated()")
 public class PrizeController {
 
     @Autowired
     private PrizeDao prizeDao;
 
+  //  @Autowired
+  //  private UserDao userDao;
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(path = "/addFamilyPrize", method = RequestMethod.POST)
     public void addPrizeToFamily(@RequestBody Prize newPrize) {
         prizeDao.addPrizeToFamily(newPrize);
     }
-
+    /*@PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(path = "/addUserPrize", method = RequestMethod.POST)
     public void addPrizeToUser(@RequestBody Prize newPrize) {
         prizeDao.addPrizeToUser(newPrize);
-    }
+    }*/
 
     @RequestMapping(path = "/prizes/list/user/{userId}")
     public List<Prize> getAllPrizesByUserId(@PathVariable int userId) {
@@ -44,14 +51,15 @@ public class PrizeController {
     public List<Prize> getAllPrizesByFamilyId(@PathVariable int familyId) {
         return prizeDao.getAllPrizesByFamilyId(familyId);
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(path = "/deletePrize/{prizeId}", method = RequestMethod.DELETE)
     public void deletePrize(@PathVariable int prizeId) {
         prizeDao.deletePrize(prizeId);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(path = "/updatePrize/{prizeId}", method = RequestMethod.PUT)
-    public void updatePrize(@PathVariable int prizeId) {
+    public void updatePrize(@RequestBody @PathVariable int prizeId) {
         prizeDao.updatePrize(getPrizesById(prizeId));
     }
 }

@@ -42,16 +42,16 @@ CREATE TABLE book_users (
 
 CREATE TABLE prizes (
    prize_id SERIAL,
-   family_id INTEGER,
+   family_id INTEGER NOT NULL,
 --   user_id INTEGER, --only include if it's important to know who originated the prize
-   prize_name varchar (100),
-   prize_description varchar (100),
-   milestone INTEGER,
+   prize_name varchar(100) NOT NULL,
+   prize_description varchar  (100) NOT NULL ,
+   milestone INTEGER NOT NULL,
    max_prizes INTEGER,
-   start_date TIMESTAMP,
-   end_date TIMESTAMP,
+   start_date DATE NOT NULL,
+   end_date DATE NOT NULL,
    CONSTRAINT PK_prize_id PRIMARY KEY (prize_id),
-   CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users (user_id), --see user_id above
+ --  CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users (user_id), --see user_id above
    CONSTRAINT FK_family_id FOREIGN KEY (family_id) REFERENCES family (family_id)
 );
 
