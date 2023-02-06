@@ -37,9 +37,9 @@ public class JdbcPrizeDao implements PrizeDao {
     }
 
     @Override
-    public void updatePrize(Prize prize) {
-        String sql = "UPDATE prizes SET, prize_name = ?, prize_description = ?, milestone = ?, max_prizes = ?, start_date = ?, end_date = ? WHERE prize_id = ?;";
-        jdbcTemplate.update(sql,prize.getPrizeId(), prize.getPrizeName(), prize.getPrizeDescription(), prize.getMilestone(), prize.getMaxPrizes(), prize.getStartDate(), prize.getEndDate());
+    public void updatePrize(int prizeId, Prize prize) {
+        String sql = "UPDATE prizes SET prize_name = ?, prize_description = ?, milestone = ?, max_prizes = ?, start_date = ?, end_date = ? WHERE prize_id = ?;";
+        jdbcTemplate.update(sql, prize.getPrizeName(), prize.getPrizeDescription(), prize.getMilestone(), prize.getMaxPrizes(), prize.getStartDate(), prize.getEndDate(), prizeId);
     }
 
     @Override

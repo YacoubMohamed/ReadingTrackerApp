@@ -29,17 +29,18 @@ public class PrizeController {
     public void addPrizeToFamily(@RequestBody Prize newPrize) {
         prizeDao.addPrizeToFamily(newPrize);
     }
+
     /*@PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(path = "/addUserPrize", method = RequestMethod.POST)
     public void addPrizeToUser(@RequestBody Prize newPrize) {
         prizeDao.addPrizeToUser(newPrize);
     }*/
 
-    @RequestMapping(path = "/prizes/list/user/{userId}")
-    public List<Prize> getAllPrizesByUserId(@PathVariable int userId) {
-        return prizeDao.getAllPrizesByUserId(userId);
-
-    }
+//    @RequestMapping(path = "/prizes/list/user/{userId}")
+//    public List<Prize> getAllPrizesByUserId(@PathVariable int userId) {
+//        return prizeDao.getAllPrizesByUserId(userId);
+//
+//    }
 
     @RequestMapping(path = "/prizes/prize/{prizeId}")
     public Prize getPrizesById(@PathVariable int prizeId) {
@@ -59,7 +60,7 @@ public class PrizeController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(path = "/updatePrize/{prizeId}", method = RequestMethod.PUT)
-    public void updatePrize(@RequestBody @PathVariable int prizeId) {
-        prizeDao.updatePrize(getPrizesById(prizeId));
+    public void updatePrize(@PathVariable int prizeId, @RequestBody Prize prize) {
+        prizeDao.updatePrize(prizeId, prize);
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 public interface PrizeDao {
 
     void deletePrize (int prizeId);
-    void updatePrize (Prize prize);
+    void updatePrize (int prizeId, Prize prize);
     List<Prize> getAllPrizesByFamilyId(int familyId);
     Prize getPrizesById (int prizesId);
     List<Prize> getAllPrizesByUserId(int userId);
