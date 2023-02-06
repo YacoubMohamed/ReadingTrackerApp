@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface ReadingActivityDao {
 
-    void addActivity ();
-    void deleteActivity ();
-    void updateActivity ();
+    List <ReadingActivity> getAllReadingActivities ();
     int getReadingTimeByUserId (int userId);
     int getReadingTimeByFamilyId (int familyId);
-    // int getActivityByActivityId (int activityId);
-    List <ReadingActivity> getAllReadingActivities ();
+    void addActivity (ReadingActivity newActivity); // needs work
+    void deleteActivity (int activityId);
+    void updateActivity (ReadingActivity updateActivity, int activityId);
+
 
 }
