@@ -80,6 +80,23 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    {
+      path: "/displayUsers",
+      name: "displayUsers",
+      component: Family,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/familyList/:familyId",
+      name: "familyId",
+      component: Family,
+      meta: {
+        requiresAuth: true
+      } 
+    },
+
   ]
 })
 

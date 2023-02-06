@@ -21,7 +21,9 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     books:[],
-    families: []
+    families: [],
+    familyMembers:[],
+    familyId : 7
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -45,6 +47,12 @@ export default new Vuex.Store({
     },
     ADD_FAMILY(state, family){
       state.families.push(family);
+    },
+    ADD_FAMILY_MEMBER(state, user){
+      state.familyMembers.push(user);
+    },
+    SET_FAMILY_ID(state, id){
+      state.familyId =id;
     }
   }
 })

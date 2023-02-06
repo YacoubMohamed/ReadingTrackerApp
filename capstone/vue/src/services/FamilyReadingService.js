@@ -17,7 +17,13 @@ export default {
 
   displayUsers() {
     return axios.get('/displayUsers')
+  },
+  addUserToFamily(familyId, user) {
+    console.log('ADD USER TO FAMILY');
+
+    return axios.put(`/family/${familyId}/${user.id}`, user)
   }
+
 
 
 }

@@ -2,10 +2,11 @@
   <div class="main-mx-auto">
       <h1>Welcome {{$store.state.user.username}}</h1>
       
-      <manage-family/>
+      
       <router-link v-bind:to="{ name: 'register' }">
               Add your child
             </router-link>
+            <manage-family/>
   </div>
 </template>
 
