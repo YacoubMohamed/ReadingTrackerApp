@@ -11,7 +11,7 @@ public interface PrizeDao {
     List<Prize> getAllPrizesByFamilyId(int familyId);
     Prize getPrizesById (int prizesId);
     List<Prize> getAllPrizesByUserId(int userId);
-    void addPrizeToUser(Prize newPrize);
+  //  void addPrizeToUser(Prize newPrize);
     void addPrizeToFamily(Prize newPrize);
 
 }
