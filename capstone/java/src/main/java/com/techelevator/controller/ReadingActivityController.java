@@ -1,8 +1,10 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.BookDao;
 import com.techelevator.dao.FamilyDao;
 import com.techelevator.dao.ReadingActivityDao;
 import com.techelevator.dao.UserDao;
+import com.techelevator.model.Book;
 import com.techelevator.model.ReadingActivity;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -24,6 +27,9 @@ public class ReadingActivityController {
 
     @Autowired
     private FamilyDao familyDao;
+
+    @Autowired
+    private BookDao bookDao;
 
     @RequestMapping(path = "/activities")
     public List<ReadingActivity> getAllReadingActivities() {
@@ -42,7 +48,23 @@ public class ReadingActivityController {
     }
 
     @RequestMapping(path = "/addActivity", method = RequestMethod.POST)
-    public void addActivity (@RequestBody ReadingActivity newActivity) {
+    public void addActivity (@RequestBody ReadingActivity newActivity, Principal principal) {
+
+
+        // we know that newActivity.getTitle() gives us the title
+        // given that title, go to some DAO and retrieve the id that corresponds to that book
+        Book foundBook = bookDao.getByTile(newActivity.getTitle());
+        newActivity.setBookId(foundBook.getBookId());
+
+        int foundId = userDao.findIdByUsername(principal.getName());
+        newActivity.setUserId(foundId);
+
+        int foundFamilyId = familyDao.getFamilyByUserId(foundId);
+        newActivity.setFamilyId(foundFamilyId);
+
+        System.out.println("debug");
+        System.out.println(newActivity);
+
         readingActivityDao.addActivity(newActivity);
     }
 
