@@ -98,6 +98,7 @@ export default {
       family: {
         family_name: "",
       },
+      family_id: 0,
       userList: [],
       filterList: [],
       searchWord: "",
@@ -132,8 +133,9 @@ export default {
         console.log(this.family)
         if (response.status == 201) {
           alert("Success");
-          this.family = response.data;
-          this.$store.commit("ADD_FAMILY", this.family);
+          this.family_id = response.data;
+          console.log(this.family_id);
+          this.$store.commit("SET_FAMILY_ID", this.family_id);
           this.resetForm2();
           this.$router.push("/manageFamily");
           //this is where you can call another API call to retrieve brand new list of books
@@ -158,7 +160,7 @@ export default {
       console.log("SET FAMILY ID - RUNS NOW");
       //this.$store.commit('SET_FAMILY_ID', this.$route.params.familyId);
       console.log(this.$store.state.familyId);
-      familyReadingService.addUserToFamily(this.$store.state.familyId, user);
+      familyReadingService.addUserToFamily(this.$store.state.familyId.family_id, user);
     },
   },
 };
