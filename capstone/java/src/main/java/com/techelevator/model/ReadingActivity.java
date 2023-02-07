@@ -17,7 +17,16 @@ public class ReadingActivity {
     private String bookFormat;
     @JsonProperty ("notes")
     private String notes;
+    @JsonProperty ("book_title")
+    private String bookTitle;
 
+    public String getBookTitle() {
+        return bookTitle;
+    }
+
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
+    }
 
     public ReadingActivity() {
     }
@@ -78,7 +87,7 @@ public class ReadingActivity {
         this.notes = notes;
     }
 
-    public ReadingActivity(int activityId, int userId, int familyId, int bookId, int timeRead, String bookFormat, String notes) {
+    public ReadingActivity(int activityId, int userId, int familyId, int bookId, int timeRead, String bookFormat, String notes, String bookTitle) {
         this.activityId = activityId;
         this.userId = userId;
         this.familyId = familyId;
@@ -86,6 +95,7 @@ public class ReadingActivity {
         this.timeRead = timeRead;
         this.bookFormat = bookFormat;
         this.notes = notes;
+        this.bookTitle = bookTitle;
     }
 }
 

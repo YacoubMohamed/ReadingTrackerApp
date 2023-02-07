@@ -1,6 +1,8 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Book;
 import com.techelevator.model.ReadingActivity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -12,6 +14,9 @@ import java.util.List;
 public class JdbcReadingActivityDao implements ReadingActivityDao{
 
     JdbcTemplate jdbcTemplate;
+
+    @Autowired
+   private BookDao bookDao;
 
     public JdbcReadingActivityDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -50,8 +55,18 @@ public class JdbcReadingActivityDao implements ReadingActivityDao{
 
     @Override
     public void addActivity(ReadingActivity newActivity) {
-        String sql = "INSERT INTO reading_activity (user_id, family_id, book_id, time_read, book_format, notes) VALUES (?,?,?,?,?,?);";
-        jdbcTemplate.update(sql, newActivity.getUserId(), newActivity.getFamilyId(), newActivity.getBookId(), newActivity.getTimeRead(), newActivity.getBookFormat(), newActivity.getNotes());
+//        Book book = bookDao.getByTile(newActivity.getBookTitle());
+        int bookId = 0;
+
+        String sqlTitle = "SELECT book_id FROM book WHERE title = ?";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sqlTitle, newActivity.getBookTitle());
+
+        if (rowSet.next()) {
+            bookId = rowSet.getInt("book_id");
+        }
+
+        String sqlActivity = "INSERT INTO reading_activity (user_id, family_id, book_id, time_read, book_format, notes) VALUES (?,?,?,?,?,?);";
+        jdbcTemplate.update(sqlActivity, newActivity.getUserId(), newActivity.getFamilyId(), bookId, newActivity.getTimeRead(), newActivity.getBookFormat(), newActivity.getNotes());
 
     }
 
