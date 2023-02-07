@@ -23,7 +23,8 @@ export default new Vuex.Store({
     books:[],
     families: [],
     familyMembers:[],
-    familyId : 0
+    familyId : 0,
+    activities: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -44,6 +45,9 @@ export default new Vuex.Store({
     },
     ADD_BOOK(state, book){
       state.books.push(book);
+    },
+    ADD_ACTIVITY(state, activity){
+      state.activities.push(activity);
     },
     ADD_FAMILY(state, family){
       state.families.push(family);

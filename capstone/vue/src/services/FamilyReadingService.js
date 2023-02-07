@@ -5,6 +5,9 @@ export default {
   addBook(book) {
     return axios.post('/addBook', book)
   },
+  addReadingActivity(activity) {
+    return axios.post('/addActivity', activity)
+  },
   getBooks() {
     return axios.get('/books/list')
   },

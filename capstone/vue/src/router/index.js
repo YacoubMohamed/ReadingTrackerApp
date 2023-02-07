@@ -8,6 +8,7 @@ import store from '../store/index'
 import Book from '../views/Book.vue'
 import Books from '../views/Books.vue'
 import Family from '../views/Family.vue'
+import AddReadingActivity from '../components/AddReadingActivity.vue'
 
 Vue.use(Router)
 
@@ -60,6 +61,14 @@ const router = new Router({
       path: "/addBook",
       name: "addBook",
       component: Book,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/addActivity",
+      name: "addActivity",
+      component: AddReadingActivity,
       meta: {
         requiresAuth: true
       }
