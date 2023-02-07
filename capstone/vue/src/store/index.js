@@ -23,7 +23,7 @@ export default new Vuex.Store({
     books:[],
     families: [],
     familyMembers:[],
-    familyId : 7
+    familyId : 0
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {

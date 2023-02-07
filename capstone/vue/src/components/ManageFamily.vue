@@ -68,6 +68,7 @@
       </div>
       </div>
 <div class="cont3">
+  <h2>User List</h2>
       <user-display class="user_list"
         v-for="user in userList"
         v-bind:key="user.id"
@@ -86,11 +87,7 @@ export default {
   name: "manage-family",
   data() {
     return {
-      member: {
-        username: "",
-        userRole: "",
-        userId: "",
-      },
+     
       familyMembers: [],
       user: {
         username: "",
@@ -132,7 +129,8 @@ export default {
     },
     addNewFamily() {
       familyReadingService.addFamily(this.family).then((response) => {
-        if (response.status == 200) {
+        console.log(this.family)
+        if (response.status == 201) {
           alert("Success");
           this.family = response.data;
           this.$store.commit("ADD_FAMILY", this.family);
@@ -171,7 +169,7 @@ export default {
 display: flex;
 flex-direction: row;
 justify-content:space-between;
-background-color: lightcoral;
+
 }
 .cont{
   display: flex;

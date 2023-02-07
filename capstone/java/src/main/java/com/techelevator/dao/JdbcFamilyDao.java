@@ -65,9 +65,13 @@ public class JdbcFamilyDao implements FamilyDao {
     }
 
     @Override
-    public void addFamily(Family newFamily) {
-        String sql = "INSERT INTO family (family_name, user_id) VALUES (?,?);";
-        jdbcTemplate.update(sql, newFamily.getFamilyName(), newFamily.getUserId());
+    public int addFamily(Family newFamily,int id) {
+        int newFamilyId;
+        String sql = "INSERT INTO family (family_name) VALUES (?) RETURNING family_id;";
+        newFamilyId= jdbcTemplate.queryForObject(sql, Integer.class, newFamily.getFamilyName());
+        String sql2 = "UPDATE users SET family_id = ? WHERE user_id = ?";
+         jdbcTemplate.update(sql2, newFamilyId, id);
+        return newFamilyId;
 //        String sql = "INSERT INTO family (family_name, user_id) VALUES (?, ?);";
 //        jdbcTemplate.update(sql, newFamily.getFamilyName(), newFamily.getUserId());
         // try {
