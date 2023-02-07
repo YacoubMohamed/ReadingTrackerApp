@@ -1,7 +1,10 @@
 <template>
   <div class="main-auto-x">
       <div class="userdisplay">
-          <h1>Username: {{user.username}}</h1>
+        <table>
+          <th></th>
+          <tr>{{user.username}}</tr>
+          </table>
       </div>
   </div>
 </template>
