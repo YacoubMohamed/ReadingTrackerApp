@@ -5,6 +5,9 @@ import com.techelevator.dao.ReadingActivityDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.ReadingActivity;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -57,5 +60,21 @@ public class ReadingActivityController {
 
 
 
+
+
+    @RequestMapping(path = "/addActivity/parent/{userId}", method = RequestMethod.POST)
+    public void addParentActivity (@RequestBody ReadingActivity newparentActivity) {
+        readingActivityDao.addActivity(newparentActivity);
+    }
+    @RequestMapping(path = "/addActivity/child/{userId}", method = RequestMethod.POST)
+    public void addChildActivity (@RequestBody ReadingActivity newChildActivity) {
+        readingActivityDao.addActivity(newChildActivity);
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(path = "/addActivity/parentToChild/{userId}", method = RequestMethod.POST)
+    public void addParentToChildActivity (@RequestBody ReadingActivity newParentToChildActivity) {
+        readingActivityDao.addActivity(newParentToChildActivity);
+    }
 
 }

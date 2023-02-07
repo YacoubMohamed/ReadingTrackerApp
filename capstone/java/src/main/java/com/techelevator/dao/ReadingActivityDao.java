@@ -15,5 +15,12 @@ public interface ReadingActivityDao {
     void deleteActivity (int activityId);
     void updateActivity (ReadingActivity updateActivity, int activityId);
 
+    void parentActivity (ReadingActivity parentActivity, int userId);
+    void ChildActivity (ReadingActivity childActivity, int userId);
+    void ParentToChildActivity (ReadingActivity parentToChildActivity, int userId);
+
+
+
+
 
 }

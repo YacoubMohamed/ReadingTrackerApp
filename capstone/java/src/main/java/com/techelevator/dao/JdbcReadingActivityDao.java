@@ -70,6 +70,28 @@ public class JdbcReadingActivityDao implements ReadingActivityDao{
 
     }
 
+
+    @Override
+    public void parentActivity(ReadingActivity parentActivity, int userId) {
+        String sql = "INSERT INTO reading_activity (user_id, family_id, book_id, time_read, book_format, notes) VALUES (?,?,?,?,?,?);";
+        jdbcTemplate.update(sql,parentActivity.getUserId(), parentActivity.getFamilyId(), parentActivity.getBookId(),parentActivity.getTimeRead(), parentActivity.getBookFormat(), parentActivity.getNotes(), userId);
+    }
+
+    @Override
+    public void ChildActivity(ReadingActivity childActivity, int userId) {
+        String sql = "INSERT INTO reading_activity (user_id, family_id, book_id, time_read, book_format, notes) VALUES (?,?,?,?,?,?);";
+        jdbcTemplate.update(sql,childActivity.getUserId(), childActivity.getFamilyId(), childActivity.getBookId(),childActivity.getTimeRead(), childActivity.getBookFormat(), childActivity.getNotes(), userId);
+    }
+
+    @Override
+    public void ParentToChildActivity(ReadingActivity parentToChildActivity, int userId) {
+        String sql = "INSERT INTO reading_activity (user_id, family_id, book_id, time_read, book_format, notes) VALUES (?,?,?,?,?,?);";
+        jdbcTemplate.update(sql,parentToChildActivity.getUserId(), parentToChildActivity.getFamilyId(), parentToChildActivity.getBookId(),parentToChildActivity.getTimeRead(), parentToChildActivity.getBookFormat(), parentToChildActivity.getNotes(), userId);
+    }
+
+
+
+
     private ReadingActivity mapRowToReadingActivities (SqlRowSet rowSet) {
         ReadingActivity readingActivity = new ReadingActivity();
         readingActivity.setActivityId(rowSet.getInt("activity_id"));

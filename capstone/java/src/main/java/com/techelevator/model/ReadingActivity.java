@@ -17,8 +17,7 @@ public class ReadingActivity {
     private String bookFormat;
     @JsonProperty ("notes")
     private String notes;
-    // private String dateStarted;
-    // private String dateFinished;
+
 
     public ReadingActivity() {
     }
