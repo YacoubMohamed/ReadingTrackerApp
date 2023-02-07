@@ -6,12 +6,19 @@ import java.util.List;
 
 public interface ReadingActivityDao {
 
-    void addActivity ();
-    void deleteActivity ();
-    void updateActivity ();
+    List <ReadingActivity> getAllReadingActivities ();
+//  get activity by user id
     int getReadingTimeByUserId (int userId);
     int getReadingTimeByFamilyId (int familyId);
-    // int getActivityByActivityId (int activityId);
-    List <ReadingActivity> getAllReadingActivities ();
+//  get activity by family id
+    void addActivity (ReadingActivity newActivity);
+    void deleteActivity (int activityId);
+    void updateActivity (ReadingActivity updateActivity, int activityId);
+    void parentActivity (ReadingActivity parentActivity, int userId);
+    void ChildActivity (ReadingActivity childActivity, int userId);
+    void ParentToChildActivity (ReadingActivity parentToChildActivity, int userId);
+
+
+
 
 }
