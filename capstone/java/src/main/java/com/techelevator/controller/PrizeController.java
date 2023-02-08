@@ -47,9 +47,9 @@ public class PrizeController {
 //    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus (HttpStatus.CREATED)
     @RequestMapping(path = "/addFamilyPrize", method = RequestMethod.POST)
-    public void addPrizeToFamily(@RequestBody Prize newPrize, Principal principal) {
+    public void addPrizeToFamily(@RequestBody Prize newPrize) {
 
-        prizeDao.addPrizeToFamily(newPrize, principal);
+        prizeDao.addPrizeToFamily(newPrize);
     }
 
     /*@PreAuthorize("hasRole('ROLE_ADMIN')")

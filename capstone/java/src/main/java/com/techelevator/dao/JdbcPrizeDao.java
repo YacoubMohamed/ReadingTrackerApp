@@ -25,9 +25,9 @@ public class JdbcPrizeDao implements PrizeDao {
     }*/
 
     @Override
-    public void addPrizeToFamily(Prize newPrize, Principal principal) {
-        String sql = "INSERT INTO prizes (family_id, prize_name, prize_description, milestone, start_date, end_date) VALUES ((SELECT family_id FROM users WHERE username = ?), ?,?,?,?,?)";
-        jdbcTemplate.update(sql, principal.getName(), newPrize.getPrizeName(), newPrize.getPrizeDescription(),newPrize.getMilestone(), newPrize.getStartDate(),newPrize.getEndDate());
+    public void addPrizeToFamily(Prize newPrize) {
+        String sql = "INSERT INTO prizes (family_id, prize_name, prize_description, milestone, start_date, end_date) VALUES (?, ?,?,?,?,?)";
+        jdbcTemplate.update(sql, newPrize.getFamilyId(), newPrize.getPrizeName(), newPrize.getPrizeDescription(),newPrize.getMilestone(), newPrize.getStartDate(),newPrize.getEndDate());
     }
 
     @Override
