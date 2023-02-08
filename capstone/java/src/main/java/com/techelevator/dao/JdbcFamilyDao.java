@@ -42,16 +42,16 @@ public class JdbcFamilyDao implements FamilyDao {
         return familyMembers;
     }
 
-//    // @Override
-//  //  public Family getFamilyById(int familyId) {
-//    //    Family family;
-//        String sql = "SELECT * FROM family WHERE family_id = ?; ";
-//        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, familyId);
-//        if (rowSet.next()) {
-//            family = mapRowToFamily(rowSet);
-//            return family;
-//        } else return null;
-//    }
+    @Override
+    public Family getFamilyById(int familyId) {
+        Family family;
+        String sql = "SELECT * FROM family WHERE family_id = ?; ";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, familyId);
+        if (rowSet.next()) {
+            family = mapRowToFamily(rowSet);
+            return family;
+        } else return null;
+    }
 
     @Override
     public int getFamilyByUserId(int userId) {

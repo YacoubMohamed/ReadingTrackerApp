@@ -11,7 +11,7 @@ import java.util.List;
 public interface FamilyDao {
     List<FamilyUsers> getListOfFamilyMembers(int familyId);
     List<Family> getListOfFamilies();
-  //  Family getFamilyById(int familyId);
+    Family getFamilyById(int familyId);
     int getFamilyByUserId(int userId);
   //  int getUsernameByFamily ()
     int addFamily (Family newFamily,int id);

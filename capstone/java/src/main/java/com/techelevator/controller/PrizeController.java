@@ -1,16 +1,21 @@
 package com.techelevator.controller;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.techelevator.dao.FamilyDao;
 import com.techelevator.dao.PrizeDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Book;
 import com.techelevator.model.Family;
 import com.techelevator.model.Prize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -21,13 +26,30 @@ public class PrizeController {
     @Autowired
     private PrizeDao prizeDao;
 
-  //  @Autowired
-  //  private UserDao userDao;
+    @Autowired
+    private FamilyDao familyDao;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Autowired
+    private UserDao userDao;
+
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+//    @ResponseStatus (HttpStatus.CREATED)
+//    @RequestMapping(path = "/addFamilyPrize", method = RequestMethod.POST)
+//    public ResponseEntity <PrizeResponse> addPrizeToFamily(@RequestBody Prize newPrize, Principal principal) {
+//        System.out.println(principal.getName());
+//        int id = userDao.findIdByUsername(principal.getName()); //find family by name/something else
+//        newPrize.setFamilyId(id);
+//
+//        prizeDao.addPrizeToFamily(newPrize, principal);
+//        return null;
+//    }
+
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ResponseStatus (HttpStatus.CREATED)
     @RequestMapping(path = "/addFamilyPrize", method = RequestMethod.POST)
-    public void addPrizeToFamily(@RequestBody Prize newPrize) {
-        prizeDao.addPrizeToFamily(newPrize);
+    public void addPrizeToFamily(@RequestBody Prize newPrize, Principal principal) {
+
+        prizeDao.addPrizeToFamily(newPrize, principal);
     }
 
     /*@PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -64,4 +86,21 @@ public class PrizeController {
     public void updatePrize(@PathVariable int prizeId, @RequestBody Prize prize) {
         prizeDao.updatePrize(prizeId, prize);
     }
-}
+
+    public static class PrizeResponse {
+        private int prizeId;
+
+//        @JsonProperty("prize_id");
+        public int getPrizeId() {
+            return prizeId;
+        }
+
+        public void setPrizeId(int prizeId) {
+            this.prizeId = prizeId;
+        }
+
+        public PrizeResponse(int prizeId) {
+            this.prizeId = prizeId; }
+
+        }
+    }

@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <img src="../assets/otherlogo.svg" alt="Read" />
+      <img src="../assets/read-logo-3-01.png" alt="Read" />
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
         class="alert alert-danger"
@@ -83,7 +83,7 @@ color: red;
 }
 
 img {
-  padding-top: 1em;
+  padding-top: 1.5em;
   max-width: 90%;
 }
 #signin {

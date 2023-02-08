@@ -6,7 +6,8 @@
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <input
+      <div id="radios">
+      <input id="parent"
         v-model="user.userRole"
         type="radio"
         name="userRole"
@@ -14,17 +15,15 @@
       />
       <label for="parent">Parent</label>
       <br />
-      <input
+      <input id="child" 
         v-model="user.userRole"
         type="radio"
         name="userRole"
         value="child"
       />
       <label for="child">Child</label>
-    
-      <br />
-
-       <div v-if="user.userRole === 'child'">
+    </div>
+            <div v-if="user.userRole === 'child'">
         <input v-model="user.ageCheck" type="checkbox" name="agecheck" />
         <label for=" agecheck"> Are you older than 13? </label>
       </div>
@@ -135,6 +134,19 @@ export default {
 </script>
 
 <style scoped>
+#radios {
+  display: flex;
+}
+#child, #parent{
+  margin-left: 20px;
+  margin-bottom: 8px;
+}
+
+.btn {
+  margin-left: 15px;
+  background-color: #2ab675;
+  border: 2px solid #035349
+}
 
 .account {
   
@@ -143,7 +155,6 @@ export default {
 }
 .container-register {
   height: 100vh;
-  background-color: rgb(201, 233, 226);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -152,16 +163,51 @@ export default {
 .form-register {
   border: 1px solid rgb(150, 145, 145);
   border-radius: 10px;
-  margin-top: 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 0px 20px 20px 20px;
-   background-color: rgb(162, 204, 195);
-  box-shadow: inset 0 0 15px rgb(128, 192, 178);
-
+  background-color: rgb(241, 238, 238);
+  box-shadow: inset 0 0 15px rgb(93, 134, 125);
+  width: 25em;
+  margin-top: 35px;
+  height: 75%;
 }
 
-h1 {
-  padding: .5em 1em 0em 1.5em;
+img {
+  padding-top: 1em;
+  max-width: 90%;
+}
 
+#account {
+  
+  text-decoration: none;
+  margin-right: 25px;
+  padding-top: 25px;
+  color: #035349;
+}
+h1 {
+  border: none;
+  padding-bottom: 0em;
+  padding-top: .5em;
+  margin-top: .5em;
+  color: #035349;
+}
+#register {
+  padding-left: 1em;
+  
+}
+#bottom-buttons {
+  padding-top: 1em;
+  padding-bottom:1em;
+}
+.text-center {
+  background-color: rgb(241, 238, 238);
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  box-shadow: inset 0 0 10px rgb(192, 189, 189);
+  border-radius: 5px;
 }
 
 </style>

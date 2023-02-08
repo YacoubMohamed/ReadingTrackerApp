@@ -28,8 +28,9 @@ export default {
   },
   getBookByUser() {
     return axios.get(`/books/userList`)
+  },
+  addPrizeToFamily(newPrize) {
+    return axios.post(`/addFamilyPrize`, newPrize)
   }
-
-
-
+ 
 }

@@ -9,6 +9,7 @@ import Book from '../views/Book.vue'
 import Books from '../views/Books.vue'
 import Family from '../views/Family.vue'
 import AddReadingActivity from '../components/AddReadingActivity.vue'
+import Prizes from '../views/Prizes.vue'
 
 Vue.use(Router)
 
@@ -105,6 +106,14 @@ const router = new Router({
         requiresAuth: true
       } 
     },
+    {
+      path: "/addFamilyPrize",
+      name: "addPrizes",
+      component: Prizes,
+      meta: {
+        requiresAuth: true
+      }
+    }
 
   ]
 })

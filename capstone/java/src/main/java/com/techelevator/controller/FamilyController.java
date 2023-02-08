@@ -75,10 +75,10 @@ public class FamilyController {
         return familyDao.getFamilyByUserId(userId);
     }
 
-    // @RequestMapping (path = "/family/{familyId}")
-    // public Family getFamilyNameByFamilyId (@PathVariable int familyId) {
-    // return familyDao.getFamilyById(familyId);
-    // }
+    @RequestMapping (path = "/family/{familyId}")
+    public Family getFamilyNameByFamilyId (@PathVariable int familyId) {
+    return familyDao.getFamilyById(familyId);
+    }
 
     public static class FamilyResponse {
         private int familyId;

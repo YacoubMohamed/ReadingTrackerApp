@@ -24,7 +24,8 @@ export default new Vuex.Store({
     families: [],
     familyMembers:[],
     familyId : 0,
-    activities: []
+    activities: [],
+    prizes: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -60,6 +61,9 @@ export default new Vuex.Store({
     },
     SET_FAMILY_ID(state, id){
       state.familyId =id;
+    },
+    ADD_PRIZE(state, prize){
+      state.prizes.push(prize);
     }
   }
 })

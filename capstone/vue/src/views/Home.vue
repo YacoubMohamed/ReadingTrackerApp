@@ -2,7 +2,7 @@
   <div class="home">
     <div class="div-one">
       <div class="container-one">
-        <img src="../assets/logo.jpg" alt="Read" />
+        <img src="../assets//read-logo-3-01.png" alt="Read" />
       </div>
 
       <div class="container-two">
@@ -33,7 +33,7 @@
             </router-link>
           </li>
            <li class="choice">
-            <router-link v-bind:to="{ name: 'manageFamily' }">
+            <router-link v-bind:to="{ name: 'addPrizes' }">
               Manage Prizes
             </router-link>
           </li>

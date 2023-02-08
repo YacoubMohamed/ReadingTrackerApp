@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Prize;
 
+import java.security.Principal;
 import java.util.List;
 
 public interface PrizeDao {
@@ -12,6 +13,6 @@ public interface PrizeDao {
     Prize getPrizesById (int prizesId);
     List<Prize> getAllPrizesByUserId(int userId);
   //  void addPrizeToUser(Prize newPrize);
-    void addPrizeToFamily(Prize newPrize);
+    void addPrizeToFamily(Prize newPrize, Principal principal);
 
 }

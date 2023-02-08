@@ -1,7 +1,7 @@
 <template>
   <div class="main mx-auto">
-    {{books}}
-    {{activity}}
+    <!-- {{books}}
+    {{activity}} -->
     <a
       id="showForm1"
       href="#"
