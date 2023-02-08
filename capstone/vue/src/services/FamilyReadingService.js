@@ -25,6 +25,9 @@ export default {
     console.log('ADD USER TO FAMILY');
 
     return axios.put(`/family/${familyId}/${user.id}`, user)
+  },
+  getBookByUser() {
+    return axios.get(`/books/userList`)
   }
 
 

@@ -32,6 +32,11 @@
               Manage Family
             </router-link>
           </li>
+           <li class="choice">
+            <router-link v-bind:to="{ name: 'manageFamily' }">
+              Manage Prizes
+            </router-link>
+          </li>
         </ul>
       </div>
     </div>

@@ -1,5 +1,6 @@
 <template>
   <div class="main mx-auto">
+    {{books}}
     <a
       id="showForm1"
       href="#"
@@ -16,8 +17,13 @@
     >
       <div class="form-element">
         <label for="title">
-Title: </label>
-        <input id="title" type="text" v-model="activity.title" />
+Book Title: </label>
+        <select id="title" name="userBooks" required v-model="activity.title" />
+      </div>
+      <div class="form-element">
+        <label for="reader">
+Activity for: </label>
+        <select id="reader" name="reader" required  />
       </div>
       <div class="form-element">
         <label for="time_read">Time Read: </label>
@@ -48,6 +54,7 @@ Title: </label>
 import familyService from "../services/FamilyReadingService";
 export default {
   name: "add-reading",
+  props: ["user"],
   data() {
     return {
       showForm1: false,
@@ -57,10 +64,20 @@ export default {
         book_format: "",
         notes: "",
       },
-    };
+      books: [],
+      };
   },
-  created() {},
+  created() {
+    this.getBooksByUserId();
+
+    },
   methods: {
+    getBooksByUserId() {
+      familyService.getBookByUser().then((response) =>{
+        this.books = response.data;
+        console.log(this.books);
+    })
+    },
     resetForm() {
       this.showForm1 = false;
       this.activity = {

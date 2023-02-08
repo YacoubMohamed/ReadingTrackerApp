@@ -110,7 +110,7 @@ public class ReadingActivity {
         this.timeRead = timeRead;
         this.bookFormat = bookFormat;
         this.notes = notes;
-        this.bookTitle = bookTitle;
+        this.title = bookTitle;
     }
 }
 

@@ -41,9 +41,9 @@ public class BookController {
         return bookDao.getAllBooks();
     }
 
-    @RequestMapping(path = "/books/list/{username}")
-    public List<Book> getBooksByUsername(@PathVariable String username) {
-        return bookDao.getBooksByUsername(username);
+    @RequestMapping(path = "/books/userList", method = RequestMethod.GET)
+    public List<Book> getBooksByUsername(Principal principal) {
+        return bookDao.getBooksByUsername(principal.getName());
     }
 
     // do we need getBooksByUserId? getBooksByFamilyId?

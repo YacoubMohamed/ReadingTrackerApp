@@ -37,10 +37,10 @@
    
 <div class="cont2">
 
-        <a href="#" v-on:click.prevent="showForm2 = !showForm2"
+        <a href="#" v-on:click.prevent="showForm3 = !showForm3"
           ><h3>Add Family Members</h3></a
         >
-        <div id="familySearchBar" v-show="showForm2">
+        <div id="familySearchBar" v-show="showForm3">
           <input
             type="text"
             id="search"
@@ -48,7 +48,7 @@
             placeholder="enter username"
           />
           <button btn v-on:click.prevent="search">Search</button>
-          <button btn v-on:click="resetForm2">Clear</button><br /><br />
+          <button btn v-on:click="resetForm3">Clear</button><br /><br />
           <div class="user_list">
             <li
               id="userlist"
@@ -95,6 +95,7 @@ export default {
       },
       showForm1: false,
       showForm2: false,
+      showForm3: false,
       family: {
         family_name: "",
       },
@@ -127,6 +128,11 @@ export default {
       this.family = {
         family_name: "",
       };
+    },
+    resetForm3() {
+      this.showForm3 = false;
+      this.searchWord = "";
+      this.filterList = [];
     },
     addNewFamily() {
       familyReadingService.addFamily(this.family).then((response) => {
@@ -161,7 +167,9 @@ export default {
       //this.$store.commit('SET_FAMILY_ID', this.$route.params.familyId);
       console.log(this.$store.state.familyId);
       familyReadingService.addUserToFamily(this.$store.state.familyId.family_id, user);
+      this.resetForm3();
     },
+
   },
 };
 </script>

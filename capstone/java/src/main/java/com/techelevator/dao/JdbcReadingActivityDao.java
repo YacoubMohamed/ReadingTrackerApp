@@ -59,7 +59,7 @@ public class JdbcReadingActivityDao implements ReadingActivityDao{
         int bookId = 0;
 
         String sqlTitle = "SELECT book_id FROM book WHERE title = ?";
-        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sqlTitle, newActivity.getBookTitle());
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sqlTitle, newActivity.getTitle());
 
         if (rowSet.next()) {
             bookId = rowSet.getInt("book_id");
