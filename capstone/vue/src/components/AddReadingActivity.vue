@@ -1,6 +1,7 @@
 <template>
   <div class="main mx-auto">
     {{books}}
+    {{activity}}
     <a
       id="showForm1"
       href="#"
@@ -18,7 +19,9 @@
       <div class="form-element">
         <label for="title">
 Book Title: </label>
-        <select id="title" name="userBooks" required v-model="activity.title" />
+        <select id="title" name="userBooks" v-model="activity.title">
+          <option  v-for="book in books" v-bind:key="book.id">{{ book.title }}</option>
+          </select>
       </div>
       <div class="form-element">
         <label for="reader">
@@ -69,6 +72,7 @@ export default {
   },
   created() {
     this.getBooksByUserId();
+
 
     },
   methods: {
