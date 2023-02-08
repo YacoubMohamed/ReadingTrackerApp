@@ -24,7 +24,7 @@ Title: </label>
         <input id="time_read" type="text" v-model="activity.time_read" />
       </div>
       <div class="form-element">
-        <label for="book-format">Book Format: </label>
+        <label for="book_format">Book Format: </label>
         <input id="book_format" type="text" v-model="activity.book_format" />
       </div>
       <div class="form-element">

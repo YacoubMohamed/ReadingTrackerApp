@@ -11,21 +11,36 @@ public class ReadingActivity {
     private int familyId;
     @JsonProperty ("book_id")
     private int bookId;
+
+    @Override
+    public String toString() {
+        return "ReadingActivity{" +
+                "activityId=" + activityId +
+                ", userId=" + userId +
+                ", familyId=" + familyId +
+                ", bookId=" + bookId +
+                ", timeRead=" + timeRead +
+                ", bookFormat='" + bookFormat + '\'' +
+                ", notes='" + notes + '\'' +
+                ", bookName='" + title + '\'' +
+                '}';
+    }
+
     @JsonProperty ("time_read")
     private int timeRead;
     @JsonProperty ("book_format")
     private String bookFormat;
     @JsonProperty ("notes")
     private String notes;
-    @JsonProperty ("book_title")
-    private String bookTitle;
+    @JsonProperty ("title")
+    private String title;
 
-    public String getBookTitle() {
-        return bookTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public ReadingActivity() {
