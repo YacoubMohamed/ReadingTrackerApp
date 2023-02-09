@@ -106,10 +106,10 @@ export default {
     };
   },
   created() {
-    familyReadingService.displayFamily().then((response) => {
-      this.userList = response.data;
-      console.log("this is where my family is");
-    });
+    // familyReadingService.displayFamily().then((response) => {
+    //   this.userList = response.data;
+    //   console.log("this is where my family is");
+    // });
 
     familyReadingService.displayUsers().then((response) => {
       console.log(response.data);
@@ -162,11 +162,10 @@ export default {
       return (this.filterList = this.userList);
     },
     addFamilyMember(user) {
-      console.log(this.$store.state.familyId);
-      console.log("SET FAMILY ID - RUNS NOW");
-      //this.$store.commit('SET_FAMILY_ID', this.$route.params.familyId);
-      console.log(this.$store.state.familyId);
-      familyReadingService.addUserToFamily(this.$store.state.familyId.family_id, user);
+     
+   
+     
+      familyReadingService.addUserToFamily(parseInt(this.$store.state.user.family_id), parseInt(user.id));
       this.resetForm3();
     },
 

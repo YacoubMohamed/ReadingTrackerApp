@@ -21,10 +21,10 @@ export default {
   displayUsers() {
     return axios.get('/displayUsers')
   },
-  addUserToFamily(familyId, user) {
+  addUserToFamily(familyId, userId) {
     console.log('ADD USER TO FAMILY');
 
-    return axios.put(`/family/${familyId}/${user.id}`, user)
+    return axios.put(`/family/${familyId}/${userId}`)
   },
   getBookByUser() {
     return axios.get(`/books/userList`)
