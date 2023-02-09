@@ -4,11 +4,21 @@ public class FamilyUsers {
     private String familyName;
     private int familyId;
     private String username;
+    private int user_id;
 
-    public FamilyUsers(String familyName, int familyId, String username) {
+    public FamilyUsers(String familyName, int familyId, String username, int user_id) {
         this.familyName = familyName;
         this.familyId = familyId;
         this.username = username;
+        this.user_id = user_id;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getUsername() {

@@ -55,9 +55,9 @@ public class FamilyController {
         familyDao.updateFamily(familyName.getFamilyName(), familyId);
     }
 
-    @RequestMapping(path = "/family/list/{familyId}")
-    public List<FamilyUsers> getListOfFamilyMembers(int familyId) {
-        return familyDao.getListOfFamilyMembers(familyId);
+    @RequestMapping(path = "/family/list", method = RequestMethod.GET)
+    public List<FamilyUsers> getListOfFamilyMembers(Principal principal) {
+        return familyDao.getListOfFamilyMembers(familyDao.getFamilyByUserId(userDao.findIdByUsername(principal.getName())));
     }
 
     @RequestMapping(path = "/family/{familyId}/{userId}", method = RequestMethod.PUT)

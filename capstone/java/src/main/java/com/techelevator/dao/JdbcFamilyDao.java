@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 @Component
 public class JdbcFamilyDao implements FamilyDao {
 
@@ -34,10 +36,18 @@ public class JdbcFamilyDao implements FamilyDao {
     @Override
     public List<FamilyUsers> getListOfFamilyMembers(int familyId) {
         List<FamilyUsers> familyMembers = new ArrayList<>();
-        String sql = "SELECT users.username, users.user_id, family.family_id JOIN family ON users.family_id = family.family_id WHERE users.family_id = ?";
+        String sql = "SELECT * FROM users JOIN family ON users.family_id = family.family_id WHERE users.family_id = ?";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, familyId);
+        String sql2 = "SELECT * FROM family WHERE family_id = ?";
+        SqlRowSet rowSet2 = jdbcTemplate.queryForRowSet(sql2, familyId);
+        String familyName = "";
+        if (rowSet2.next()) {
+            familyName = rowSet2.getString("family_name");
+        }
         while (rowSet.next()) {
-            familyMembers.add(mapRowToFamilyUsers(rowSet));
+            User user = mapRowToUser(rowSet);
+            FamilyUsers familyMemberObject = new FamilyUsers(familyName,familyId, user.getUsername(),user.getId());
+            familyMembers.add(familyMemberObject);
         }
         return familyMembers;
     }
@@ -56,7 +66,7 @@ public class JdbcFamilyDao implements FamilyDao {
     @Override
     public int getFamilyByUserId(int userId) {
        int id = 0; // can this = 0?
-        String sql = "SELECT family_id FROM users WHERE user_id = ?;";
+        String sql = "SELECT * FROM users WHERE user_id = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql,userId);
         if (rowSet.next()) {
             id = rowSet.getInt("family_id");
@@ -124,6 +134,16 @@ public class JdbcFamilyDao implements FamilyDao {
         familyUsers.setFamilyName(rs.getString("family_name"));
         familyUsers.setUsername(rs.getString("username"));
         return familyUsers;
+    }
+
+    private User mapRowToUser(SqlRowSet rs) {
+        User user = new User();
+        user.setId(rs.getInt("user_id"));
+        user.setUsername(rs.getString("username"));
+        user.setPassword(rs.getString("password_hash"));
+        user.setAuthorities(Objects.requireNonNull(rs.getString("role")));
+        user.setActivated(true);
+        return user;
     }
 
 

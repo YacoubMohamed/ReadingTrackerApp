@@ -12,7 +12,7 @@ export default {
     return axios.get('/books/list')
   },
   displayFamily() {
-    return axios.get('/family/list/${familyId}')
+    return axios.get('/family/list')
   },
   addFamily(family) {
     return axios.post('/addFamily', family)
@@ -32,5 +32,6 @@ export default {
   addPrizeToFamily(newPrize) {
     return axios.post(`/addFamilyPrize`, newPrize)
   }
+
  
 }

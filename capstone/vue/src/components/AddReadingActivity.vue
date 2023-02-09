@@ -1,5 +1,5 @@
 <template>
-  <div class="main mx-auto">
+  <div class="main-mx-auto">
     <!-- {{books}}
     {{activity}} -->
     <a
@@ -26,7 +26,9 @@ Book Title: </label>
       <div class="form-element">
         <label for="reader">
 Activity for: </label>
-        <select id="reader" name="reader" required  />
+        <select id="reader" name="reader" required v-model="activity.user_id">
+          <option v-for="member in familyList" v-bind:key="member.family_id" :value="member.user_id">{{member.username}}  </option>
+          </select>
       </div>
       <div class="form-element">
         <label for="time_read">Time Read: </label>
@@ -63,23 +65,30 @@ export default {
       showForm1: false,
       activity: {
         title: "",
+        user_id: "",
         time_read: "",
         book_format: "",
         notes: "",
       },
+      familyList: [],
       books: [],
       };
   },
   created() {
     this.getBooksByUserId();
+    this.getFamilyList();
 
 
     },
   methods: {
+    getFamilyList() {
+      familyService.displayFamily().then((response) =>{
+        this.familyList = response.data;
+        })
+    },
     getBooksByUserId() {
       familyService.getBookByUser().then((response) =>{
         this.books = response.data;
-        console.log(this.books);
     })
     },
     resetForm() {
@@ -110,6 +119,7 @@ export default {
 </script>
 
 <style scoped>
+
 .form-element {
   padding-left: 4em;
 }

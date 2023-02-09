@@ -15,6 +15,7 @@ public class User {
    @JsonIgnore
    private boolean activated;
    private Set<Authority> authorities = new HashSet<>();
+   private int family_id;
 
    public User() { }
 
@@ -72,6 +73,14 @@ public class User {
          String authority = role.contains("ROLE_") ? role : "ROLE_" + role;
          this.authorities.add(new Authority(authority));
       }
+   }
+
+   public int getFamily_id() {
+      return family_id;
+   }
+
+   public void setFamily_id(int family_id) {
+      this.family_id = family_id;
    }
 
    @Override
