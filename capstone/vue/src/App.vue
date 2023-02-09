@@ -1,9 +1,16 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
-    </div>
+    <header>
+      <div class="logo">
+         <img src="./assets/logo.jpg"/>
+      </div>
+     
+    <div id="nav" class="nav">
+        <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
+        <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+      </div>
+    </header>
+  
     <router-view />
   </div>
 </template>
@@ -46,6 +53,11 @@
 .mx-auto {
   margin-left: auto !important;
   margin-right: auto !important;
+}
+
+*, html {
+  padding: 0px; 
+  margin: 0px;
 }
 
 html {
@@ -170,5 +182,22 @@ textarea {
 }
 button {
   border-radius: 0;
+}
+.nav{
+  padding: 15px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #333;
+}
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+}
+.logo{
+  padding: 10px;
+}
+.logo, .logo > img {
+  width: 200px;
 }
 </style>

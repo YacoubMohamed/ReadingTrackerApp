@@ -99,5 +99,9 @@ export default {
 </script>
 
 <style>
+#book-form{
 
+  display:block;
+  margin: 0 auto;
+}
 </style>

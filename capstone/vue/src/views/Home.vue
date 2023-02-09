@@ -14,61 +14,46 @@
       <div class="container-three">
         <div class="prompt">What would you like to do?</div>
 
-        <ul class="menu-nav">
-          <li class="choice">
-            <router-link v-bind:to="{ name: 'manageBooks' }">
-              Your Books
-            </router-link>
-          </li>
-
-          <li class="choice">
-            <router-link v-bind:to="{ name: 'addBook' }">
-              Manage Books
-            </router-link>
-          </li>
-
-          <li class="choice">
-            <router-link v-bind:to="{ name: 'manageFamily' }">
-              Manage Family
-            </router-link>
-          </li>
-           <li class="choice">
-            <router-link v-bind:to="{ name: 'addPrizes' }">
-              Manage Prizes
-            </router-link>
-          </li>
-        </ul>
+        
       </div>
     </div>
     <div class="div-two">
-      <div class="number-of-books">
-        <p class="infographic">1000 PAGES</p>
+      <div class="infographic-container">
+        <div class="infographic">
+          <router-link v-bind:to="{ name: 'manageBooks' }">
+            Your Books
+          </router-link>
+        </div>
+        <div class="infographic">
+          <router-link v-bind:to="{ name: 'addBook' }">
+            Manage Books
+          </router-link>
+        </div>
       </div>
-
-      <div class="graphics">
-        <p class="infographic">HERE IS THE GRAPH</p>
+      <div class="infographic-container">
+        <div class="infographic">
+          <router-link v-bind:to="{ name: 'manageFamily' }">
+            Manage Family
+          </router-link>
+        </div>
+        <div class="infographic">
+          <router-link v-bind:to="{ name: 'addPrizes' }">
+            Manage Prizes
+          </router-link>
+        </div>
       </div>
-            <div class="number-of-books">
-        <p class="infographic">3 books til your next goal!</p>
-      </div>
-
-      <div class="graphics">
-        <p class="infographic">HERE IS THE GRAPH</p>
-      </div>
-
     </div>
-   
+
     <div class="div-three">
-       
-      <div class="spouse">
-        <h3> Family Members </h3>
-        <img src="../assets/bookworm.jpg" alt="" />
+      <div class="spouse ">
+        <h3>Family Members</h3>
+        <img class="circular-image" src="../assets/bookworm.jpg" alt="" />
       </div>
-      <div class="child 1">
-        <img src="../assets/baby.jpg" alt="" />
+      <div class="child ">
+        <img class="circular-image" src="../assets/baby.jpg" alt="" />
       </div>
-      <div class="child 2">
-        <img src="../assets/funnyboy.jpg" alt="" />
+      <div class="child ">
+        <img class="circular-image" src="../assets/funnyboy.jpg" alt="" />
       </div>
     </div>
   </div>
@@ -83,20 +68,30 @@ export default {
 </script>
 
 <style scoped>
-
 #books {
   margin-left: 3em;
 }
 
 .home {
   height: 100%;
-  background-color: rgb(241, 238, 238); 
+ 
   display: flex;
   flex-basis: 25%;
   flex-direction: row;
   justify-content: space-between;
   box-shadow: inset 0 0 10px rgb(192, 189, 189);
   border-radius: 5px;
+}
+
+.home:first-child{
+   background-color: rgb(241, 238, 238);
+}
+
+.circular-image {
+  border: solid 1px  #ccc;
+  box-shadow: inset 0 0 10px rgb(192, 189, 189);
+  margin: 20px 0;
+  display: block;
 }
 .div-one {
   height: 100vh;
@@ -105,43 +100,49 @@ export default {
   flex-direction: column;
   justify-content: top;
   box-shadow: inset 0 0 10px rgb(192, 189, 189);
-  
+
   border-radius: 5px;
   padding: 1em;
 }
 
 h1 {
   padding-top: 1em;
-  margin-left: .5em;
+  margin-left: 0.5em;
   color: #035149;
   font-size: 25px;
 }
 
 h3 {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 15px;
   color: #035149;
 }
 
 .div-two {
   display: flex;
+  flex-direction: column;
   flex-grow: 2;
   flex-wrap: wrap;
   justify-content: space-around;
   border-radius: 5px;
   padding: 3em;
 }
+.infographic-container, .infographic{
+   display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .infographic {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 0px ;
+ 
+  border: 0px;
   border-radius: 20px;
   box-shadow: inset 0 0 15px rgb(160, 158, 158);
   width: 250px;
   height: 200px;
   background-color: #2ab675;
   color: rgb(241, 238, 238);
+  margin: 0 50px;
 }
 .div-three {
   height: 100vh;
@@ -150,9 +151,12 @@ h3 {
   justify-content: space-around;
   padding: 2em;
 }
+.container-two, .container-three {
+  text-align: center;
+}
 
 .container-one {
-  padding: .5em 2em 0em 1.5em;
+  padding: 0.5em 2em 0em 1.5em;
   margin-top: 5%;
 }
 .container-three {
@@ -160,7 +164,6 @@ h3 {
   flex-direction: column;
   padding-top: 2em;
 }
-
 
 .div-three img {
   height: 8rem;
@@ -185,5 +188,9 @@ h3 {
   list-style: none;
   text-decoration: none;
   margin-top: 10px;
+}
+a {
+  color: white;
+  text-decoration: none;
 }
 </style>

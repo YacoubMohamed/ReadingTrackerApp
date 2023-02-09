@@ -18,6 +18,7 @@ components: {FamilyList},
 <style scoped>
 .list {
   height: 100vh;
-  background-color: rgb(16, 141, 199);
+  margin: 0 auto;
+    width: 1080px;
 }
 </style>

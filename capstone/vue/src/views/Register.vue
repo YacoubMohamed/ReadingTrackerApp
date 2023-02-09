@@ -1,7 +1,6 @@
 <template>
   <div id="register" class="text-center">
     <div class="container-register">
-      {{user}}
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
@@ -134,7 +133,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
 #radios {
   display: flex;
 }
@@ -168,7 +167,7 @@ export default {
   flex-direction: column;
   align-items: center;
   padding: 0px 20px 20px 20px;
-  background-color: rgb(241, 238, 238);
+  background-color: white;
   box-shadow: inset 0 0 15px rgb(93, 134, 125);
   width: 25em;
   margin-top: 35px;

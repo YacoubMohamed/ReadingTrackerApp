@@ -99,11 +99,11 @@ img {
   flex-direction: column;
   align-items: center;
   padding: 0px 20px 20px 20px;
-  background-color: rgb(241, 238, 238);
   box-shadow: inset 0 0 15px rgb(93, 134, 125);
   width: 25em;
   margin-top: 35px;
   height: 75%;
+  background-color: white;
 }
 #account {
   text-decoration: none;

@@ -18,13 +18,22 @@ props: ["book"],
 <style>
 
 .books {
-  background-color: rgb(233, 220, 220);
+  background-color: #fafafa;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  border: 1px black solid;
+  border: 1px solid #ccc;
   border-radius: 6px;
-  padding: .001rem;
-  margin: 1rem;
+  padding: 5px;
+  box-sizing: border-box;
+  margin: 10px 0;
+  color: #bbb;
+
+}
+.books h1 {
+   color: #2ab675
+}
+.books h2 {
+  color: #333;
 }
 </style>
