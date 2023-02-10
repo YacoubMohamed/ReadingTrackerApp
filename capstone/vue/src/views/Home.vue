@@ -12,12 +12,13 @@
         </div>
       </div>
       <div class="container-three">
-        <div class="prompt">What would you like to do?</div>
+        <!-- <div class="prompt">What would you like to do?</div> -->
 
         
       </div>
     </div>
     <div class="div-two">
+      <h1>What would you like to do?</h1>
       <div class="infographic-container">
         <div class="infographic">
           <router-link v-bind:to="{ name: 'manageBooks' }">
@@ -44,7 +45,7 @@
       </div>
     </div>
 
-    <div class="div-three">
+    <!-- <div class="div-three">
       <div class="spouse ">
         <h3>Family Members</h3>
         <img class="circular-image" src="../assets/bookworm.jpg" alt="" />
@@ -55,7 +56,7 @@
       <div class="child ">
         <img class="circular-image" src="../assets/funnyboy.jpg" alt="" />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -100,13 +101,13 @@ export default {
   flex-direction: column;
   justify-content: top;
   box-shadow: inset 0 0 10px rgb(192, 189, 189);
-
+  padding-top: .5em;
   border-radius: 5px;
   padding: 1em;
 }
 
 h1 {
-  padding-top: 1em;
+  padding-top: 0;
   margin-left: 0.5em;
   color: #035149;
   font-size: 25px;
@@ -126,6 +127,7 @@ h3 {
   justify-content: space-around;
   border-radius: 5px;
   padding: 3em;
+  padding-top: 1em;
 }
 .infographic-container, .infographic{
    display: flex;

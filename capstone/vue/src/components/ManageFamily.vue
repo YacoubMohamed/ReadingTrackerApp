@@ -1,7 +1,9 @@
 <template>
    <div class="main-mx-auto">
      <div class="cont">
-<div class="cont1">
+       <register />
+<div class="cont1"> 
+  
     <a
       id="showForm"
       href="#"
@@ -12,7 +14,7 @@
       Add a Family
       </h3>
     </a>
-    <register />
+    
     <form
       id="book-form"
       v-on:submit.prevent="addNewFamily"
@@ -178,7 +180,9 @@ export default {
 display: flex;
 flex-direction: row;
 justify-content:space-between;
-
+}
+h1 {
+  padding-top: 0em;
 }
 .cont{
   display: flex;
@@ -201,6 +205,7 @@ justify-content:space-between;
 a {
   text-decoration:none ;
   color: black;
+  font-size: 20px;
 
 }
 

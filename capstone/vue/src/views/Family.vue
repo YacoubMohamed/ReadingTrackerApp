@@ -1,9 +1,9 @@
 <template>
   <div class="main-mx-auto">
-      <h1>Welcome {{$store.state.user.username}}</h1>
+      <!-- <h1>Welcome {{$store.state.user.username}}</h1> -->
       
       <h1 class="route">
-      <router-link v-bind:to="{ name: 'register' }">
+      <router-link id="removeformat" v-bind:to="{ name: 'register' }">
               Add your child
             </router-link>
             <manage-family/>
@@ -22,10 +22,15 @@ components:{ ManageFamily },
 
 <style>
 .main-mx-auto{
-  background-color: blanchedalmond;
+  background-color: #D8F3DC;
 }
 
 .route{
   text-decoration: none;
+}
+#removeformat {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
 }
 </style>
